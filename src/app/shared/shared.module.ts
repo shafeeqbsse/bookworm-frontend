@@ -1,0 +1,13 @@
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {LoggerService} from "./logger/logger.service";
+
+@NgModule({
+    imports: [
+        CommonModule
+    ],
+    declarations: [],
+    providers: [LoggerService]
+})
+export class SharedModule {
+}
