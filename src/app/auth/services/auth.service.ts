@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {UserCredentials} from "../../models/UserCredentials";
 import {Observable} from "rxjs";
+import {LoginCredentials} from "../../models/LoginCredentials";
 
 @Injectable()
 export class AuthService {
@@ -8,7 +8,7 @@ export class AuthService {
     constructor() {
     }
 
-    authenticate(user: UserCredentials): Observable<any> {
+    authenticate(user: LoginCredentials): Observable<any> {
         return null;
     }
 
