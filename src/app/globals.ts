@@ -5,5 +5,5 @@ export const GLOBALS = {
         ROOT            : ROOT,
         LOGIN           : `${ROOT}/login`,
     },
-    LOCAL_TOKEN_KEY     : 'myTokenKey',
+    LOCAL_TOKEN_KEY     : 'STORED_TOKEN',
 };
