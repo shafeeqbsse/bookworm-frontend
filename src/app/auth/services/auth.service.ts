@@ -5,6 +5,7 @@ import {Http, Response} from "@angular/http";
 import {GLOBALS} from "../../globals";
 import {JwtHelper, tokenNotExpired} from "angular2-jwt";
 import {User} from "../../models/User";
+import {RegisterDetails} from "../../models/RegisterDetails";
 
 @Injectable()
 export class AuthService {
@@ -22,6 +23,14 @@ export class AuthService {
                 const token = this.extractToken(res.headers.get("authorization"));
                 this.storeToken(token);
                 this.createUserFromToken(token);
+                return res;
+            })
+            .catch(this.handleError);
+    }
+
+    register(user: RegisterDetails): Observable<any>  {
+        return this.http.post(GLOBALS.API.REGISTER, user)
+            .map((res:Response) => {
                 return res;
             })
             .catch(this.handleError);
@@ -59,4 +68,6 @@ export class AuthService {
             }
         }
     }
+
+
 }
