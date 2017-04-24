@@ -7,7 +7,7 @@ export class LoggerService {
     constructor() {
     }
 
-    msg(msg:string, level:number) {
+    msg(msg:any, level:number) {
         if (level <= this.level) {
             console.log(msg)
         }
