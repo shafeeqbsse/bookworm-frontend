@@ -26,7 +26,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         BrowserModule,
         FormsModule,
         HttpModule,
-        AuthModule,
+        AuthModule.forRoot(),
         SharedModule.forRoot(),
         AppRoutingModule
     ],
