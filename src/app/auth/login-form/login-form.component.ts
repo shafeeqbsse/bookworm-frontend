@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {LoggerService} from "../../shared/logger/logger.service";
 import {AuthService} from "../services/auth.service";
@@ -12,6 +12,8 @@ import {LoginCredentials} from "../../models/LoginCredentials";
 export class LoginFormComponent implements OnInit {
 
     loginForm: FormGroup;
+
+    @Input() isMini:boolean = false;
 
     constructor(private logger: LoggerService, public fb: FormBuilder, private auth: AuthService) {
     }

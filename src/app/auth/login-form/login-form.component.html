@@ -1,9 +1,9 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
-    <label for="inputUsername">Username</label>
-    <input formControlName="username" type="text" id="inputUsername" placeholder="username">
+<form [ngClass]="{'mini-login': isMini}" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+    <label *ngIf="!isMini" for="inputUsername">Username</label>
+    <input class="text-input" formControlName="username" type="text" id="inputUsername" placeholder="username">
 
-    <label for="inputPassword">Password</label>
-    <input formControlName="password" type="password" id="inputPassword" placeholder="password">
+    <label *ngIf="!isMini" for="inputPassword">Password</label>
+    <input class="text-input" formControlName="password" type="password" id="inputPassword" placeholder="password">
 
-    <input type="submit" value="Login"/>
+    <input class="submit-input" type="submit" value="Login"/>
 </form>
