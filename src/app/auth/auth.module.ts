@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {NgModule, ModuleWithProviders} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {AuthRoutingModule} from './auth-routing.module';
@@ -16,8 +16,13 @@ import { RegisterFormComponent } from './register-form/register-form.component';
         AuthRoutingModule
     ],
     exports: [LoginFormComponent],
-    declarations: [LoginPageComponent, LoginFormComponent, UserInfoComponent, RegisterFormComponent],
-    providers: [AuthService]
+    declarations: [LoginPageComponent, LoginFormComponent, UserInfoComponent, RegisterFormComponent]
 })
 export class AuthModule {
+    static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: AuthModule,
+            providers: [AuthService]
+        };
+    }
 }
