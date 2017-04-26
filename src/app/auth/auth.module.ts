@@ -15,6 +15,7 @@ import { RegisterFormComponent } from './register-form/register-form.component';
         ReactiveFormsModule,
         AuthRoutingModule
     ],
+    exports: [LoginFormComponent],
     declarations: [LoginPageComponent, LoginFormComponent, UserInfoComponent, RegisterFormComponent],
     providers: [AuthService]
 })
