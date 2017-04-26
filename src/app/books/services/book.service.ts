@@ -8,6 +8,7 @@ export class BookService {
   constructor(private authHttp: AuthHttp) {}
 
   getBooks() {
+    console.log(GLOBALS);
     return this.authHttp.get(GLOBALS.API.ROOT + "/books")
       .map(response => {
         return response.json();
