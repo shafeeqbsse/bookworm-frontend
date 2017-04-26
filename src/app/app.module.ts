@@ -10,6 +10,7 @@ import {LoggerService} from "./shared/logger/logger.service";
 import {SharedModule} from "./shared/shared.module";
 import {GLOBALS} from "./globals";
 import {AuthConfig, AuthHttp} from "angular2-jwt";
+import { BrowseBooksPageComponent } from './books/browse-books-page/browse-books-page.component';
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -20,7 +21,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        BrowseBooksPageComponent
     ],
     imports: [
         BrowserModule,
