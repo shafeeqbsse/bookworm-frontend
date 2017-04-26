@@ -1,0 +1,38 @@
+<!--<nav class="navbar navbar-default no-round-border">-->
+    <!--<div class="container">-->
+        <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
+        <!--<div class="navbar-header">-->
+            <!--<button type="button" class="navbar-toggle collapsed" (click)="isCollapsed = !isCollapsed"-->
+                    <!--aria-expanded="false">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <!--<a class="navbar-brand" routerLink="/">BookWorms</a>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
+        <!--<div class="collapse navbar-collapse" [collapse]="isCollapsed" *ngIf="authService.isAuthenticated">-->
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li [routerLinkActive]="['active']" (click)="isCollapsed = true"><a class="nav-item nav-link link"-->
+                       <!--routerLink="/dashboard">Etusivu</a></li>-->
+                <!--<li *ngIf="checkUserRole()" [routerLinkActive]="['active']" (click)="isCollapsed = true"><a class="nav-item nav-link link" routerLink="/admin">Järjestelmän-->
+                    <!--asetukset</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+                <!--<li [routerLinkActive]="['active']" (click)="isCollapsed = true"><a class="nav-item nav-link link" routerLink="/profile">Käyttäjätili</a></li>-->
+                <!--<li><a class="nav-item nav-link link clickable" (click)="logout()">-->
+                        <!--Log out-->
+                    <!--</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</nav>-->
+
+<div class="temp-header">
+    <h2>BookWorms</h2>
+    <app-login-form></app-login-form>
+</div>
