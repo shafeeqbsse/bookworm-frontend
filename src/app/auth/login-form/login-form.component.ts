@@ -33,6 +33,7 @@ export class LoginFormComponent implements OnInit {
         user.password = formData.password;
         this.auth.authenticate(user).subscribe(result => {
                 this.logger.msg(result.headers.get("authorization"), 1);
+                this.loggedIn = this.auth.isAuthenticated;
                 this.router.navigate(['me']);
             },
             error => {
@@ -43,6 +44,7 @@ export class LoginFormComponent implements OnInit {
     logout() {
         this.auth.logout();
         this.router.navigate(['login']);
+        this.loggedIn = this.auth.isAuthenticated;
     }
 
     buildForm(): void {
