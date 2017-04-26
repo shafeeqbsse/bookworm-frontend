@@ -15,14 +15,15 @@ export class LoginFormComponent implements OnInit {
     loginForm: FormGroup;
 
     @Input() isMini: boolean = false;
+    public loggedIn: boolean;
 
     constructor(private logger: LoggerService, public fb: FormBuilder, private auth: AuthService,
                 private router: Router) {
     }
 
-
     ngOnInit() {
         this.buildForm();
+        this.loggedIn = this.auth.isAuthenticated;
     }
 
     onSubmit(formData) {
@@ -37,6 +38,11 @@ export class LoginFormComponent implements OnInit {
             error => {
                 this.logger.msg(error, 1);
             });
+    }
+
+    logout() {
+        this.auth.logout();
+        this.router.navigate(['login']);
     }
 
     buildForm(): void {

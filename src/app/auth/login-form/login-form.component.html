@@ -1,4 +1,4 @@
-<form [ngClass]="{'mini-login': isMini}" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+<form *ngIf="!loggedIn" [ngClass]="{'mini-login': isMini}" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
     <label *ngIf="!isMini" for="inputUsername">Username</label>
     <input class="text-input" formControlName="username" type="text" id="inputUsername" placeholder="username">
 
@@ -7,3 +7,4 @@
 
     <input class="submit-input" type="submit" value="Login"/>
 </form>
+<button *ngIf="loggedIn" (click)="logout()">Log Out</button>

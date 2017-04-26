@@ -12,6 +12,7 @@ export class AuthService {
 
     jwtHelper:JwtHelper = new JwtHelper();
     user: User;
+    public isAuthenticated: boolean = false;
 
     constructor(private http: Http) {
         this.loadToken();
@@ -34,6 +35,12 @@ export class AuthService {
                 return res;
             })
             .catch(this.handleError);
+    }
+
+    logout() {
+        window.localStorage.removeItem(GLOBALS.LOCAL_TOKEN_KEY);
+        this.user = null;
+        this.isAuthenticated = false;
     }
 
 
@@ -65,6 +72,7 @@ export class AuthService {
         if (token) {
             if (tokenNotExpired(GLOBALS.LOCAL_TOKEN_KEY)) {
                 this.createUserFromToken(token);
+                this.isAuthenticated = true;
             }
         }
     }
