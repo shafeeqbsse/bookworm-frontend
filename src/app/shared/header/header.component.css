@@ -11,3 +11,13 @@
     background-color: #838383;
     color: white;
 }*/
+.temp-header {
+    background: lightgray;
+    height: auto;
+    padding: 0.5em;
+}
+
+.temp-header-title {
+    display: inline-block;
+    margin: 0.1em 0.1em 0.2em 0;
+}
