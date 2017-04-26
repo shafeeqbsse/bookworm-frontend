@@ -3,6 +3,7 @@ import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {LoggerService} from "../../shared/logger/logger.service";
 import {AuthService} from "../services/auth.service";
 import {LoginCredentials} from "../../models/LoginCredentials";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-login-form',
@@ -13,14 +14,16 @@ export class LoginFormComponent implements OnInit {
 
     loginForm: FormGroup;
 
-    @Input() isMini:boolean = false;
+    @Input() isMini: boolean = false;
+    public loggedIn: boolean;
 
-    constructor(private logger: LoggerService, public fb: FormBuilder, private auth: AuthService) {
+    constructor(private logger: LoggerService, public fb: FormBuilder, private auth: AuthService,
+                private router: Router) {
     }
-
 
     ngOnInit() {
         this.buildForm();
+        this.loggedIn = this.auth.isAuthenticated;
     }
 
     onSubmit(formData) {
@@ -30,10 +33,16 @@ export class LoginFormComponent implements OnInit {
         user.password = formData.password;
         this.auth.authenticate(user).subscribe(result => {
                 this.logger.msg(result.headers.get("authorization"), 1);
+                this.router.navigate(['me']);
             },
             error => {
                 this.logger.msg(error, 1);
             });
+    }
+
+    logout() {
+        this.auth.logout();
+        this.router.navigate(['login']);
     }
 
     buildForm(): void {
