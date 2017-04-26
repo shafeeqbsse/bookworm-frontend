@@ -12,6 +12,7 @@ import {GLOBALS} from "./globals";
 import {AuthConfig, AuthHttp} from "angular2-jwt";
 import { BrowseBooksPageComponent } from './books/browse-books-page/browse-books-page.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {BrowseBooksModule} from "./books/browse-books.module";
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -22,8 +23,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 
 @NgModule({
     declarations: [
-        AppComponent,
-        BrowseBooksPageComponent
+        AppComponent
     ],
     imports: [
         BrowserModule,
@@ -33,6 +33,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         SharedModule.forRoot(),
         AppRoutingModule,
         NgbModule.forRoot()
+        AuthModule,
+        SharedModule,
+        AppRoutingModule,
+        BrowseBooksModule
     ],
     providers: [
         LoggerService,
