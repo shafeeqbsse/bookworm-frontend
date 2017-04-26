@@ -24,6 +24,7 @@ export class AuthService {
                 const token = this.extractToken(res.headers.get("authorization"));
                 this.storeToken(token);
                 this.createUserFromToken(token);
+                this.isAuthenticated = true;
                 return res;
             })
             .catch(this.handleError);
