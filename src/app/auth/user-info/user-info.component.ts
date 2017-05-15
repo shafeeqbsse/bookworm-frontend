@@ -23,8 +23,6 @@ export class UserInfoComponent implements OnInit {
           this.id = res.id;
           this.name = res.username;
           this.admin = res.admin;
-
       });
   }
-
 }
