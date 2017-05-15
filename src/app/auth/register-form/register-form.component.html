@@ -13,9 +13,14 @@
     <br/>
     <label for="inputPassword">Password</label>
     <input formControlName="password" type="password" id="inputPassword" placeholder="password">
+    <div *ngIf="registerForm.controls['password'].hasError('required')
+        && registerForm.controls['password'].touched ">Please enter a password.</div>
     <br/>
     <label for="inputRepeatPassword">Repeat Password</label>
     <input formControlName="repeatPassword" type="password" id="inputRepeatPassword" placeholder="password">
+    <div *ngIf="registerForm.controls['repeatPassword'].hasError('required')
+        && registerForm.controls['repeatPassword'].touched ">Please repeat the password!</div>
+    <br/>
     <br/>
     <input type="submit" value="Sign up"/>
 </form>
