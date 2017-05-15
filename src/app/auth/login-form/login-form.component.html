@@ -1,10 +1,15 @@
 <form *ngIf="!loggedIn" [ngClass]="{'mini-login': isMini}" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
     <label *ngIf="!isMini" for="inputUsername">Username</label>
     <input class="text-input" formControlName="username" type="text" id="inputUsername" placeholder="username">
+    <div *ngIf="loginForm.controls['username'].hasError('required')
+    && loginForm.controls['username'].touched">Please enter your username.</div>
 
     <label *ngIf="!isMini" for="inputPassword">Password</label>
     <input class="text-input" formControlName="password" type="password" id="inputPassword" placeholder="password">
+    <div *ngIf="loginForm.controls['password'].hasError('required')
+    && loginForm.controls['password'].touched">Please enter your password.</div>
 
-    <input class="submit-input" type="submit" value="Login"/>
+    <input class="submit-input" type="submit" value="Login" [disabled]="!loginForm.valid"/>
+    <div [hidden]="!loginFailed">Invalid username or password!</div>
 </form>
 <button *ngIf="loggedIn" (click)="logout()">Log Out</button>

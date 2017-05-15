@@ -16,6 +16,7 @@ export class LoginFormComponent implements OnInit {
 
     @Input() isMini: boolean = false;
     public loggedIn: boolean;
+    public loginFailed: boolean;
 
     constructor(private logger: LoggerService, public fb: FormBuilder, private auth: AuthService,
                 private router: Router) {
@@ -37,6 +38,11 @@ export class LoginFormComponent implements OnInit {
                 this.router.navigate(['me']);
             },
             error => {
+                if (error.status && error.status == 403) {
+                    this.logger.msg("Failed to log in", 1);
+                    this.loginFailed = true;
+                    this.loginForm.reset();
+                }
                 this.logger.msg(error, 1);
             });
     }
