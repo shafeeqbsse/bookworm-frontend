@@ -3,15 +3,24 @@
 
     <label for="inputEmail">Email</label>
     <input formControlName="email" type="email" id="inputEmail" placeholder="john.doe@mail.com">
+    <div *ngIf="registerForm.controls['email'].hasError('required')
+        && registerForm.controls['email'].touched ">Please enter your email address.</div>
     <br/>
     <label for="inputUsername">Username</label>
     <input formControlName="username" type="text" id="inputUsername" placeholder="username">
+    <div *ngIf="registerForm.controls['username'].hasError('required')
+        && registerForm.controls['username'].touched ">Please enter a username.</div>
     <br/>
     <label for="inputPassword">Password</label>
     <input formControlName="password" type="password" id="inputPassword" placeholder="password">
+    <div *ngIf="registerForm.controls['password'].hasError('required')
+        && registerForm.controls['password'].touched ">Please enter a password.</div>
     <br/>
     <label for="inputRepeatPassword">Repeat Password</label>
     <input formControlName="repeatPassword" type="password" id="inputRepeatPassword" placeholder="password">
+    <div *ngIf="registerForm.controls['repeatPassword'].hasError('required')
+        && registerForm.controls['repeatPassword'].touched ">Please repeat the password!</div>
     <br/>
-    <input type="submit" value="Sign up"/>
+    <br/>
+    <input type="submit" value="Sign up" [disabled]="!registerForm.valid"/>
 </form>
