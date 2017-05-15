@@ -3,6 +3,8 @@
 
     <label for="inputEmail">Email</label>
     <input formControlName="email" type="email" id="inputEmail" placeholder="john.doe@mail.com">
+    <div *ngIf="registerForm.controls['email'].hasError('required')
+        && registerForm.controls['email'].touched ">Please enter your email address.</div>
     <br/>
     <label for="inputUsername">Username</label>
     <input formControlName="username" type="text" id="inputUsername" placeholder="username">
