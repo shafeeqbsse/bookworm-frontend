@@ -8,6 +8,8 @@
     <br/>
     <label for="inputUsername">Username</label>
     <input formControlName="username" type="text" id="inputUsername" placeholder="username">
+    <div *ngIf="registerForm.controls['username'].hasError('required')
+        && registerForm.controls['username'].touched ">Please enter a username.</div>
     <br/>
     <label for="inputPassword">Password</label>
     <input formControlName="password" type="password" id="inputPassword" placeholder="password">
