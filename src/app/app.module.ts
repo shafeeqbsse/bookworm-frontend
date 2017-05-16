@@ -10,6 +10,7 @@ import {LoggerService} from "./shared/logger/logger.service";
 import {SharedModule} from "./shared/shared.module";
 import {GLOBALS} from "./globals";
 import {AuthConfig, AuthHttp} from "angular2-jwt";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -28,7 +29,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         HttpModule,
         AuthModule.forRoot(),
         SharedModule.forRoot(),
-        AppRoutingModule
+        AppRoutingModule,
+        NgbModule.forRoot()
     ],
     providers: [
         LoggerService,
