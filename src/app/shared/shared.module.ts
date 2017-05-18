@@ -5,6 +5,7 @@ import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
 import {AppRoutingModule} from "../app-routing.module";
 import {AuthModule} from "../auth/auth.module";
+import {ShoppingCartService} from "./services/shopping-cart.service";
 
 @NgModule({
     imports: [
@@ -21,7 +22,7 @@ export class SharedModule {
     static forRoot(): ModuleWithProviders {
         return {
             ngModule: SharedModule,
-            providers: [LoggerService]
+            providers: [LoggerService, ShoppingCartService]
         };
     }
 }
