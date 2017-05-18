@@ -52,15 +52,4 @@ export class BrowseBooksPageComponent implements OnInit {
             console.error("Saving book failed", error);
         });
     }
-
-    handleDeleteBook() {
-        // console.debug("Button clicked");
-        this.bookService.deleteBook(1).subscribe(response => {
-            console.debug(response);
-        },
-        error => {
-            console.error("deleting book failed", error)
-        });
-    }
-
 }
