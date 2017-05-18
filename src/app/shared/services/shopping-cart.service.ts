@@ -35,6 +35,16 @@ export class ShoppingCartService {
         window.localStorage.setItem(GLOBALS.LOCAL_CART_KEY, JSON.stringify(this.cart));
     }
 
+    removeFromCart(book:Book) {
+        this.cart.forEach((item, index) => {
+            if(item.id === book.bookId) {
+                this.cart.splice(index, 1);
+                window.localStorage.setItem(GLOBALS.LOCAL_CART_KEY, JSON.stringify(this.cart));
+                return;
+            }
+        });
+    }
+
     getCart() {
         this.loadFromLocalStorage();
         return this.cart;
