@@ -8,14 +8,27 @@ export class ShoppingCartService {
     private cart:Array<Book>;
 
     constructor() {
-        this.cart = [];
+        const text:string  = window.localStorage.getItem(GLOBALS.LOCAL_CART_KEY);
+        this.cart = JSON.parse(text);
+        if (!this.cart) {
+            this.cart = [];
+        }
     }
 
     addToCart(book: Book) {
-        const text:string  = window.localStorage.getItem(GLOBALS.LOCAL_CART_KEY);
-        this.cart = JSON.parse(text);
         this.cart.push(book);
         window.localStorage.setItem(GLOBALS.LOCAL_CART_KEY, JSON.stringify(this.cart));
     }
 
+    getCart() {
+        const text:string  = window.localStorage.getItem(GLOBALS.LOCAL_CART_KEY);
+        this.cart = JSON.parse(text);
+        return this.cart;
+    }
+}
+
+class ShoppingCartEntry {
+    id: number;
+    amount: number;
+    book:Book;
 }
