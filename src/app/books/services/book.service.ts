@@ -10,10 +10,14 @@ export class BookService {
 
     getBooks() {
         let url: string = GLOBALS.API.ROOT + "/books";
-        //
-        // let headers = new Headers();
-        // headers.append('Content-Type','application/json');
+        return this.http.get(url)
+            .map(response => {
+                return response.json();
+            });
+    }
 
+    getBook(id: number) {
+        let url: string = GLOBALS.API.ROOT + "/books/" + id;
         return this.http.get(url)
             .map(response => {
                 return response.json();
