@@ -30,8 +30,6 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         AuthModule.forRoot(),
         SharedModule.forRoot(),
         NgbModule.forRoot(),
-        AuthModule,
-        SharedModule,
         BrowseBooksModule,
         AppRoutingModule
     ],
