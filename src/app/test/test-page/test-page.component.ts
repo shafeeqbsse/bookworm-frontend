@@ -53,7 +53,6 @@ export class TestPageComponent implements OnInit {
             });
 
 
-
     }
 
     addToCart() {
@@ -72,6 +71,26 @@ export class TestPageComponent implements OnInit {
 
     clearCart() {
         this.shoppingCartService.clearCart();
+    }
+
+    removeFromCart() {
+        this.bookService.getBook(1).subscribe(response => {
+                console.debug("Removing Book 1:", response);
+                this.shoppingCartService.removeFromCart(response);
+            },
+            error => {
+                console.error("Getting book 1 failed:", error);
+            });
+    }
+
+    decreaseAmount() {
+        this.bookService.getBook(1).subscribe(response => {
+                console.debug("Removing amount from Book 1:", response);
+                this.shoppingCartService.decreaseAmountInCart(response);
+            },
+            error => {
+                console.error("Getting book 1 failed:", error);
+            });
     }
 
 }

@@ -45,6 +45,18 @@ export class ShoppingCartService {
         });
     }
 
+    decreaseAmountInCart(book:Book) {
+        this.cart.forEach((item, index) => {
+            if(item.id === book.bookId) {
+                if (this.cart[index].amount > 1) {
+                    this.cart[index].amount--;
+                    window.localStorage.setItem(GLOBALS.LOCAL_CART_KEY, JSON.stringify(this.cart));
+                }
+                return;
+            }
+        });
+    }
+
     getCart() {
         this.loadFromLocalStorage();
         return this.cart;
