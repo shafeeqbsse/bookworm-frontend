@@ -9,7 +9,15 @@ export class PurchaseService {
     }
 
     getPurchases() {
-        let url: string = GLOBALS.API.ROOT + "/purchases";
+        const url: string = GLOBALS.API.ROOT + "/purchases";
+        return this.http.get(url)
+            .map(response => {
+                return response.json();
+            });
+    }
+
+    getPurchase(id: number) {
+        const url: string = GLOBALS.API.ROOT + "/purchases/" + id;
         return this.http.get(url)
             .map(response => {
                 return response.json();
