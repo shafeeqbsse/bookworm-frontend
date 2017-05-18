@@ -5,7 +5,7 @@ import {GLOBALS} from "../../globals";
 @Injectable()
 export class ShoppingCartService {
 
-    private cart:Array<Book>;
+    private cart:Array<ShoppingCartEntry>;
 
     constructor() {
         this.loadFromLocalStorage();
@@ -20,7 +20,18 @@ export class ShoppingCartService {
     }
 
     addToCart(book: Book) {
-        this.cart.push(book);
+        let found:number = -1;
+        this.cart.forEach((item, index) => {
+            if(item.id === book.bookId) {
+                found = index;
+                return;
+            }
+        });
+        if (found === -1) {
+            this.cart.push(new ShoppingCartEntry(book));
+        } else {
+            this.cart[found].amount++;
+        }
         window.localStorage.setItem(GLOBALS.LOCAL_CART_KEY, JSON.stringify(this.cart));
     }
 
@@ -35,6 +46,12 @@ export class ShoppingCartService {
 }
 
 class ShoppingCartEntry {
+    constructor(book: Book) {
+        this.id = book.bookId;
+        this.amount = 1;
+        this.book = book;
+    }
+
     id: number;
     amount: number;
     book:Book;
