@@ -8,6 +8,10 @@ export class ShoppingCartService {
     private cart:Array<Book>;
 
     constructor() {
+        this.loadFromLocalStorage();
+    }
+
+    private loadFromLocalStorage() {
         const text:string  = window.localStorage.getItem(GLOBALS.LOCAL_CART_KEY);
         this.cart = JSON.parse(text);
         if (!this.cart) {
@@ -21,8 +25,7 @@ export class ShoppingCartService {
     }
 
     getCart() {
-        const text:string  = window.localStorage.getItem(GLOBALS.LOCAL_CART_KEY);
-        this.cart = JSON.parse(text);
+        this.loadFromLocalStorage();
         return this.cart;
     }
 
