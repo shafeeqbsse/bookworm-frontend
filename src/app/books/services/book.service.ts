@@ -29,8 +29,27 @@ export class BookService {
     saveBook(book: Book) {
         const url: string = GLOBALS.API.ROOT + "/books/";
         const headers = new Headers();
-        headers.append('Content-Type','application/json');
+        headers.append('Content-Type', 'application/json');
         return this.http.post(url, book)
+            .map(response => {
+                return response.json();
+            });
+    }
+
+    //
+    // buyBook(id: number, amount: string) {
+    //     const url: string = GLOBALS.API.ROOT + "/books/" + id + "/buy";
+    //     const headers = new Headers();
+    //     headers.append('Content-Type', 'application/json');
+    //     return this.http.post(url, amount)
+    //         .map(response => {
+    //             return response.json();
+    //         });
+    // }
+
+    deleteBook(id: number) {
+        const url: string = GLOBALS.API.ROOT + "/books/" + id;
+        return this.http.delete(url)
             .map(response => {
                 return response.json();
             });
