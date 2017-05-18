@@ -25,6 +25,10 @@ export class ShoppingCartService {
         this.cart = JSON.parse(text);
         return this.cart;
     }
+
+    clearCart() {
+        window.localStorage.removeItem(GLOBALS.LOCAL_CART_KEY);
+    }
 }
 
 class ShoppingCartEntry {
