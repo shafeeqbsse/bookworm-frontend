@@ -1,0 +1,17 @@
+.shopping_cart_number {
+    text-align:center; position:absolute;
+    color: white;
+}
+
+.shopping_cart_circle {
+    color: red;
+}
+
+.shopping_cart_count {
+    position:relative;
+    top: -0.6em;
+}
+
+.shopping_cart_icon {
+
+}

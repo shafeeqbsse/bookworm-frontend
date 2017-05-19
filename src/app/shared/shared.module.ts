@@ -6,6 +6,7 @@ import {FooterComponent} from "./footer/footer.component";
 import {AppRoutingModule} from "../app-routing.module";
 import {AuthModule} from "../auth/auth.module";
 import {ShoppingCartService} from "./services/shopping-cart.service";
+import {ShoppingCartButtonComponent} from "./shopping-cart-button/shopping-cart-button.component";
 
 @NgModule({
     imports: [
@@ -14,9 +15,9 @@ import {ShoppingCartService} from "./services/shopping-cart.service";
         AppRoutingModule
     ],
     exports: [
-        HeaderComponent, FooterComponent
+        HeaderComponent, FooterComponent, ShoppingCartButtonComponent
     ],
-    declarations: [HeaderComponent, FooterComponent]
+    declarations: [HeaderComponent, FooterComponent, ShoppingCartButtonComponent]
 })
 export class SharedModule {
     static forRoot(): ModuleWithProviders {
