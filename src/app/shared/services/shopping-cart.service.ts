@@ -5,7 +5,7 @@ import {GLOBALS} from "../../globals";
 @Injectable()
 export class ShoppingCartService {
 
-    private cart:Array<ShoppingCartEntry>;
+    private cart: Array<ShoppingCartEntry>;
     private listeners: Array<OnShoppingCartChange>;
 
     constructor() {
@@ -14,7 +14,7 @@ export class ShoppingCartService {
     }
 
     private loadFromLocalStorage() {
-        const text:string  = window.localStorage.getItem(GLOBALS.LOCAL_CART_KEY);
+        const text: string = window.localStorage.getItem(GLOBALS.LOCAL_CART_KEY);
         this.cart = JSON.parse(text);
         if (!this.cart) {
             this.cart = [];
@@ -22,9 +22,9 @@ export class ShoppingCartService {
     }
 
     addToCart(book: Book) {
-        let found:number = -1;
+        let found: number = -1;
         this.cart.forEach((item, index) => {
-            if(item.id === book.bookId) {
+            if (item.id === book.bookId) {
                 found = index;
                 return;
             }
@@ -38,9 +38,9 @@ export class ShoppingCartService {
         this.notifyListeners();
     }
 
-    removeFromCart(book:Book) {
+    removeFromCart(book: Book) {
         this.cart.forEach((item, index) => {
-            if(item.id === book.bookId) {
+            if (item.id === book.bookId) {
                 this.cart.splice(index, 1);
                 window.localStorage.setItem(GLOBALS.LOCAL_CART_KEY, JSON.stringify(this.cart));
                 return;
@@ -49,9 +49,9 @@ export class ShoppingCartService {
         this.notifyListeners();
     }
 
-    decreaseAmountInCart(book:Book) {
+    decreaseAmountInCart(book: Book) {
         this.cart.forEach((item, index) => {
-            if(item.id === book.bookId) {
+            if (item.id === book.bookId) {
                 if (this.cart[index].amount > 1) {
                     this.cart[index].amount--;
                     window.localStorage.setItem(GLOBALS.LOCAL_CART_KEY, JSON.stringify(this.cart));
@@ -73,8 +73,12 @@ export class ShoppingCartService {
     }
 
     getAmount() {
+        let total = 0;
         this.loadFromLocalStorage();
-        return this.cart.length;
+        this.cart.forEach(item => {
+           total += item.amount;
+        });
+        return total;
     }
 
     registerChangeListener(listener: OnShoppingCartChange) {
@@ -88,7 +92,7 @@ export class ShoppingCartService {
     }
 }
 
-class ShoppingCartEntry {
+export class ShoppingCartEntry {
     constructor(book: Book) {
         this.id = book.bookId;
         this.amount = 1;
@@ -97,5 +101,5 @@ class ShoppingCartEntry {
 
     id: number;
     amount: number;
-    book:Book;
+    book: Book;
 }
