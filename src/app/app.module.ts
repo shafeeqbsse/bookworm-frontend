@@ -11,6 +11,7 @@ import {GLOBALS} from "./globals";
 import {AuthConfig, AuthHttp} from "angular2-jwt";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {BrowseBooksModule} from "./books/browse-books.module";
+import {TestModule} from "./test/test.module";
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -30,6 +31,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         AuthModule.forRoot(),
         SharedModule.forRoot(),
         NgbModule.forRoot(),
+        TestModule,
         BrowseBooksModule,
         AppRoutingModule
     ],
