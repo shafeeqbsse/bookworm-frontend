@@ -1,3 +1,12 @@
-<p>
-  shopping-cart-page works!
-</p>
+<div>
+    <ul>
+        <li *ngFor="let item of data">
+            {{item.book.title}}
+            {{item.amount}}
+            <button (click)="removeFromCart(item)"><i class="fa fa-remove"></i>Remove</button>
+            <button (click)="increaseAmount(item)"><i class="fa fa-plus"></i>Add</button>
+            <button (click)="decreaseAmount(item)"><i class="fa fa-minus"></i>Reduce</button>
+
+        </li>
+    </ul>
+</div>
