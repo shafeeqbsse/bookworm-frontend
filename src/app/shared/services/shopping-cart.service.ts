@@ -6,9 +6,11 @@ import {GLOBALS} from "../../globals";
 export class ShoppingCartService {
 
     private cart:Array<ShoppingCartEntry>;
+    private listeners: Array<OnShoppingCartChange>;
 
     constructor() {
         this.loadFromLocalStorage();
+        this.listeners = [];
     }
 
     private loadFromLocalStorage() {
@@ -33,6 +35,7 @@ export class ShoppingCartService {
             this.cart[found].amount++;
         }
         window.localStorage.setItem(GLOBALS.LOCAL_CART_KEY, JSON.stringify(this.cart));
+        this.notifyListeners();
     }
 
     removeFromCart(book:Book) {
@@ -43,6 +46,7 @@ export class ShoppingCartService {
                 return;
             }
         });
+        this.notifyListeners();
     }
 
     decreaseAmountInCart(book:Book) {
@@ -55,6 +59,7 @@ export class ShoppingCartService {
                 return;
             }
         });
+        this.notifyListeners();
     }
 
     getCart() {
@@ -64,6 +69,22 @@ export class ShoppingCartService {
 
     clearCart() {
         window.localStorage.removeItem(GLOBALS.LOCAL_CART_KEY);
+        this.notifyListeners();
+    }
+
+    getAmount() {
+        this.loadFromLocalStorage();
+        return this.cart.length;
+    }
+
+    registerChangeListener(listener: OnShoppingCartChange) {
+        this.listeners.push(listener);
+    }
+
+    private notifyListeners() {
+        this.listeners.forEach(listener => {
+            listener.onShoppingCartChange();
+        })
     }
 }
 
