@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {Book} from "../../models/Book";
 import {ShoppingCartService} from "../../shared/services/shopping-cart.service";
 import {BookService} from "../../books/services/book.service";
+import {GenreService} from "../../books/services/genre.service";
 
 @Component({
     selector: 'app-test-page',
@@ -10,9 +11,10 @@ import {BookService} from "../../books/services/book.service";
 })
 export class TestPageComponent implements OnInit {
 
-    public books:Array<Book>;
+    public books: Array<Book>;
 
-    constructor(private bookService: BookService, private shoppingCartService:ShoppingCartService) {
+    constructor(private bookService: BookService, private shoppingCartService: ShoppingCartService,
+                private genreService: GenreService) {
     }
 
     ngOnInit() {
@@ -51,6 +53,15 @@ export class TestPageComponent implements OnInit {
             error => {
                 console.error("Getting book 2 failed:", error);
             });
+
+
+        this.genreService.getGenres().subscribe(result => {
+                console.debug("Genres", result);
+            },
+            error => {
+                console.error("Failed getting genres:", error);
+            }
+        )
 
 
     }
