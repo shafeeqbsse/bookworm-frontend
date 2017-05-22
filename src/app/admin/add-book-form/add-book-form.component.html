@@ -38,6 +38,11 @@
 
     <br/>
 
+    <label for="inputIsbn">Isbn</label>
+    <input class="text-input" formControlName="isbn" type="text" id="inputIsbn" placeholder="Isbn">
+
+    <br/>
+
     <input class="submit-input" type="submit" value="Save" [disabled]="!bookForm.valid"/>
     <div [hidden]="!addBookFailed">Please fill in all required fields</div>
 </form>
