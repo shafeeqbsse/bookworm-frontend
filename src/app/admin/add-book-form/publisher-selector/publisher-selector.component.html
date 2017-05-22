@@ -1,3 +1,9 @@
-<p>
-  publisher-selector works!
-</p>
+<ng-template #rt let-r="result" let-t="term">
+    {{ r.name}}
+</ng-template>
+
+<label for="inputPublisher">Publisher</label>
+<input id="inputPublisher" type="text" [ngbTypeahead]="search" placeholder="Publisher search"
+       [inputFormatter]="formatter"
+       [resultTemplate]="rt"
+/><span *ngIf="searching" > Loading...</span>
