@@ -13,6 +13,11 @@
 
     <br/>
 
+    <label for="inputGenre">Genre</label>
+    <input class="text-input" formControlName="genre" type="text" id="inputGenre" placeholder="Genre">
+
+    <br/>
+
     <input class="submit-input" type="submit" value="Save" [disabled]="!bookForm.valid"/>
     <div [hidden]="!addBookFailed">Please fill in all required fields</div>
 </form>
