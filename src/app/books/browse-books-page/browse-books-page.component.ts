@@ -3,6 +3,7 @@ import {BookService} from "../services/book.service";
 import {Book} from "../../models/Book";
 import {Publisher} from "../../models/Publisher";
 import {Author} from "../../models/Author";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'app-browse-books-page',
@@ -11,9 +12,9 @@ import {Author} from "../../models/Author";
 })
 export class BrowseBooksPageComponent implements OnInit {
 
-    public books:Array<Book>;
+    public books: Array<Book>;
 
-    constructor(private bookService: BookService) {
+    constructor(private bookService: BookService, private route: ActivatedRoute) {
     }
 
     ngOnInit() {
@@ -46,21 +47,29 @@ export class BrowseBooksPageComponent implements OnInit {
         book.title = "This is a test book title";
 
         this.bookService.saveBook(book).subscribe(result => {
-            console.debug("Saved test book:", result);
-        },
-        error => {
-            console.error("Saving book failed", error);
-        });
+                console.debug("Saved test book:", result);
+            },
+            error => {
+                console.error("Saving book failed", error);
+            });
+
+        this.route.params.subscribe(params => {
+                console.debug("Genre from route: ", params['genre']);
+
+            }, error => {
+                console.error("Route param error", error);
+            }
+        )
     }
 
     handleDeleteBook() {
         // console.debug("Button clicked");
         this.bookService.deleteBook(1).subscribe(response => {
-            console.debug(response);
-        },
-        error => {
-            console.error("deleting book failed", error)
-        });
+                console.debug(response);
+            },
+            error => {
+                console.error("deleting book failed", error)
+            });
     }
 
 }
