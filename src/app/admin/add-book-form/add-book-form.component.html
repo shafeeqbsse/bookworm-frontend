@@ -28,6 +28,12 @@
 
     <br/>
 
+    <label for="inputStock">Stock</label>
+    <input class="text-input" formControlName="stock" type="number" id="inputStock" placeholder="Stock">
+
+    <br/>
+
+
     <input class="submit-input" type="submit" value="Save" [disabled]="!bookForm.valid"/>
     <div [hidden]="!addBookFailed">Please fill in all required fields</div>
 </form>

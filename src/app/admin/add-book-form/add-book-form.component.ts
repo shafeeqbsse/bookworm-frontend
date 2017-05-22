@@ -28,7 +28,8 @@ export class AddBookFormComponent implements OnInit {
             description: ['', Validators.compose([Validators.required])],
             genre: ['', Validators.compose([Validators.required])],
             format: ['', Validators.compose([Validators.required])],
-            price: ['', Validators.compose([Validators.required])]
+            price: ['', Validators.compose([Validators.required])],
+            stock: ['', Validators.compose([Validators.required])]
         });
     }
 
