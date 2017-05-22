@@ -23,6 +23,11 @@
 
     <br/>
 
+    <label for="inputPrice">Price</label>
+    <input class="text-input" formControlName="price" type="number" id="inputPrice" placeholder="Price">
+
+    <br/>
+
     <input class="submit-input" type="submit" value="Save" [disabled]="!bookForm.valid"/>
     <div [hidden]="!addBookFailed">Please fill in all required fields</div>
 </form>
