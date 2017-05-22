@@ -7,6 +7,7 @@ import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 import {PublisherSelectorComponent} from "./add-book-form/publisher-selector/publisher-selector.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {PublisherService} from "./services/publisher.service";
+import {AuthorSelectorComponent} from "./add-book-form/author-selector/author-selector.component";
 
 @NgModule({
     imports: [
@@ -16,7 +17,7 @@ import {PublisherService} from "./services/publisher.service";
         FormsModule,
         AdminRoutingModule
     ],
-    declarations: [AdminPageComponent, AddBookFormComponent, PublisherSelectorComponent],
+    declarations: [AdminPageComponent, AddBookFormComponent, PublisherSelectorComponent, AuthorSelectorComponent],
     providers: [PublisherService]
 })
 export class AdminModule {
