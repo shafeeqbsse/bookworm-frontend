@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {BrowseBooksPageComponent} from './browse-books-page/browse-books-page.component';
 import {BrowseBooksRoutingModule} from "./browse-books-routing.module";
 import {BookService} from "./services/book.service";
+import {GenreService} from "./services/genre.service";
 
 @NgModule({
     imports: [
@@ -10,7 +11,7 @@ import {BookService} from "./services/book.service";
         BrowseBooksRoutingModule
     ],
     declarations: [BrowseBooksPageComponent],
-    providers: [BookService]
+    providers: [BookService, GenreService]
 })
 export class BrowseBooksModule {
 }
