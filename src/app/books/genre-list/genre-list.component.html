@@ -1,6 +1,6 @@
 <div style="width: 100px; height: 300px;">
     <ul class="list-group">
-        <li *ngFor="let genre of genres" class="list-group-item">
+        <li *ngFor="let genre of genres" class="list-group-item" [routerLink]="['/browse', {'genre': genre.name}]">
             {{genre.name}}
         </li>
     </ul>
