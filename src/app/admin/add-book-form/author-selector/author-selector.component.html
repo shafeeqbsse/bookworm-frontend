@@ -1,3 +1,11 @@
-<p>
-    author-selector works!
-</p>
+<ng-template #rt let-r="result" let-t="term">
+    {{ r.firstname }} {{r.lastname}}
+</ng-template>
+
+<label for="inputAuthor">Authors</label>
+<input id="inputAuthor" type="text" [ngbTypeahead]="search" placeholder="Author search"
+       [inputFormatter]="formatter"
+       [resultTemplate]="rt"
+       [(ngModel)]="selectedAuthor"
+/><span *ngIf="searching"> Loading...</span>
+<button type="button" (click)="showSelected()">Add</button>
