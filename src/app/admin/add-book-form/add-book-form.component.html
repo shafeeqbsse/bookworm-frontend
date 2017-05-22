@@ -33,6 +33,10 @@
 
     <br/>
 
+    <label for="inputPages">Pages</label>
+    <input class="text-input" formControlName="pages" type="number" id="inputPages" placeholder="Pages">
+
+    <br/>
 
     <input class="submit-input" type="submit" value="Save" [disabled]="!bookForm.valid"/>
     <div [hidden]="!addBookFailed">Please fill in all required fields</div>
