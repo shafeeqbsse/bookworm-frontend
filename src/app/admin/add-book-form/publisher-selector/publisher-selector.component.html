@@ -1,9 +1,11 @@
 <ng-template #rt let-r="result" let-t="term">
-    {{ r.name}}
+    {{ r.name }}, {{r.city}}, {{r.country}}
 </ng-template>
 
 <label for="inputPublisher">Publisher</label>
 <input id="inputPublisher" type="text" [ngbTypeahead]="search" placeholder="Publisher search"
        [inputFormatter]="formatter"
        [resultTemplate]="rt"
+       [(ngModel)]="selectedPublisher"
 /><span *ngIf="searching" > Loading...</span>
+<button type="button" (click)="showSelected()">Selected</button>

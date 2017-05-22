@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs";
 import {PublisherService} from "../../services/publisher.service";
-import {Genre} from "../../../models/Genre";
+import {Publisher} from "../../../models/Publisher";
 
 @Component({
     selector: 'app-publisher-selector',
@@ -10,10 +10,12 @@ import {Genre} from "../../../models/Genre";
 })
 export class PublisherSelectorComponent implements OnInit {
 
-    searching:boolean = false;
-    searchFailed:boolean = false;
+    public selectedPublisher: Publisher;
 
-    constructor(private publisherService:PublisherService) {
+    searching: boolean = false;
+    searchFailed: boolean = false;
+
+    constructor(private publisherService: PublisherService) {
     }
 
     ngOnInit() {
@@ -34,9 +36,17 @@ export class PublisherSelectorComponent implements OnInit {
             .do(() => this.searching = false);
     };
 
-    formatter = (g:Genre) => {
-        return g.name;
-    }
+    formatter = (p: Publisher) => {
+        return p.name + ", " + p.city + ", " + p.country;
+    };
 
+
+    showSelected() {
+        if (this.selectedPublisher.publisherId) {
+            console.debug("Selected Publisher:", this.selectedPublisher);
+        } else {
+            console.debug("Selected Publisher:", "None yet");
+        }
+    }
 
 }
