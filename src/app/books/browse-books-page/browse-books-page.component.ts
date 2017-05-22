@@ -26,7 +26,7 @@ export class BrowseBooksPageComponent implements OnInit {
                 console.error("Getting books failed:", error);
             });
 
-        this.bookService.getBook(1).subscribe(response => {
+        /*this.bookService.getBook(1).subscribe(response => {
                 console.debug("Got Book 1:", response);
             },
             error => {
@@ -51,7 +51,7 @@ export class BrowseBooksPageComponent implements OnInit {
             },
             error => {
                 console.error("Saving book failed", error);
-            });
+            });*/
 
         this.route.params.subscribe(params => {
                 console.debug("Genre from route: ", params['genre']);
@@ -62,7 +62,7 @@ export class BrowseBooksPageComponent implements OnInit {
         )
     }
 
-    handleDeleteBook() {
+    /*handleDeleteBook() {
         // console.debug("Button clicked");
         this.bookService.deleteBook(1).subscribe(response => {
                 console.debug(response);
@@ -71,5 +71,5 @@ export class BrowseBooksPageComponent implements OnInit {
                 console.error("deleting book failed", error)
             });
     }
-
+    */
 }

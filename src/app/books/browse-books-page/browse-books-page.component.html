@@ -1,4 +1,6 @@
-<p>
-    browse-books-page works!
-    <app-genre-list></app-genre-list>
-</p>
+<app-genre-list></app-genre-list>
+<ul class="list-group">
+    <li *ngFor="let book of books" class="list-group-item">
+        {{book.title}}
+    </li>
+</ul>
