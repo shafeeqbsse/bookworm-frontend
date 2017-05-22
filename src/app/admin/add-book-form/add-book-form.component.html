@@ -1,0 +1,9 @@
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit(bookForm.value)">
+    <label for="inputTitle">Title</label>
+    <input class="text-input" formControlName="title" type="text" id="inputTitle" placeholder="Book title">
+    <div *ngIf="bookForm.controls['title'].hasError('required')
+    && bookForm.controls['title'].touched"> Please add a title for the book.</div>
+
+    <input class="submit-input" type="submit" value="Login" [disabled]="!bookForm.valid"/>
+    <div [hidden]="!bookForm">Invalid username or password!</div>
+</form>
