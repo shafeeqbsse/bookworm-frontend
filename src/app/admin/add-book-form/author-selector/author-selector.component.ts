@@ -46,9 +46,59 @@ export class AuthorSelectorComponent implements OnInit {
 
     addSelected() {
         if (this.selectedAuthor.authorId) {
+
+            this.addAuthorIfNotExists(this.selectedAuthor);
             console.debug("Selected Author:", this.selectedAuthor);
+            this.selectedAuthor = null;
+            console.log("Authors:", this.authors);
         } else {
             console.debug("Selected Author:", "None yet");
         }
+    }
+
+    removeAuthor(id: number) {
+        this.authors.forEach((a, index) => {
+            if (a.authorId === id) {
+                this.authors.splice(index, 1);
+                return;
+            }
+        })
+    }
+
+    private addAuthorIfNotExists(author: Author) {
+
+        let found: boolean = false;
+        this.authors.forEach((a) => {
+            if (a.authorId === author.authorId) {
+                found = true;
+                return;
+            }
+        });
+
+        if (!found) {
+            this.authors.push(author);
+        }
+    }
+
+    onSelectAuthor(item: any) {
+        const selected: Author = item.item;
+        console.debug("Item selected from lookahead", selected);
+        if (selected.authorId) {
+            this.addAuthorIfNotExists(selected);
+            console.debug("Selected Author:", selected);
+            this.selectedAuthor = null;
+            console.log("Authors:", this.authors);
+        } else {
+            console.debug("Selected Author:", "None yet");
+        }
+
+        setTimeout(() => {
+            this.clear();
+        }, 100)
+    }
+
+    clear() {
+        console.debug("Clear called in author selector");
+        this.selectedAuthor = null;
     }
 }

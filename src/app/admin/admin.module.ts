@@ -8,6 +8,7 @@ import {PublisherSelectorComponent} from "./add-book-form/publisher-selector/pub
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {PublisherService} from "./services/publisher.service";
 import {AuthorSelectorComponent} from "./add-book-form/author-selector/author-selector.component";
+import {AuthorService} from "./services/author.service";
 
 @NgModule({
     imports: [
@@ -18,7 +19,7 @@ import {AuthorSelectorComponent} from "./add-book-form/author-selector/author-se
         AdminRoutingModule
     ],
     declarations: [AdminPageComponent, AddBookFormComponent, PublisherSelectorComponent, AuthorSelectorComponent],
-    providers: [PublisherService]
+    providers: [PublisherService, AuthorService]
 })
 export class AdminModule {
 }
