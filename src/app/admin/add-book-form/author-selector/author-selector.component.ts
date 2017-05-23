@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, Output, EventEmitter} from "@angular/core";
 import {Author} from "../../../models/Author";
 import {Observable} from "rxjs";
 import {AuthorService} from "../../services/author.service";
@@ -10,8 +10,9 @@ import {AuthorService} from "../../services/author.service";
 })
 export class AuthorSelectorComponent implements OnInit {
 
-    public authors: Array<Author>;
+    @Output() onAuthorsChanged = new EventEmitter();
 
+    public authors: Array<Author>;
     public selectedAuthor: Author;
 
     searching: boolean = false;
@@ -44,52 +45,22 @@ export class AuthorSelectorComponent implements OnInit {
         return a.firstName + " " + a.lastName;
     };
 
-    addSelected() {
-        if (this.selectedAuthor.authorId) {
-
-            this.addAuthorIfNotExists(this.selectedAuthor);
-            console.debug("Selected Author:", this.selectedAuthor);
-            this.selectedAuthor = null;
-            console.log("Authors:", this.authors);
-        } else {
-            console.debug("Selected Author:", "None yet");
-        }
-    }
-
     removeAuthor(id: number) {
         this.authors.forEach((a, index) => {
             if (a.authorId === id) {
                 this.authors.splice(index, 1);
                 return;
             }
-        })
-    }
-
-    private addAuthorIfNotExists(author: Author) {
-
-        let found: boolean = false;
-        this.authors.forEach((a) => {
-            if (a.authorId === author.authorId) {
-                found = true;
-                return;
-            }
         });
-
-        if (!found) {
-            this.authors.push(author);
-        }
+        this.onAuthorsChanged.emit(this.authors);
     }
 
     onSelectAuthor(item: any) {
         const selected: Author = item.item;
         console.debug("Item selected from lookahead", selected);
-        if (selected.authorId) {
+        if (selected && selected.authorId) {
             this.addAuthorIfNotExists(selected);
-            console.debug("Selected Author:", selected);
-            this.selectedAuthor = null;
-            console.log("Authors:", this.authors);
-        } else {
-            console.debug("Selected Author:", "None yet");
+            this.onAuthorsChanged.emit(this.authors);
         }
 
         setTimeout(() => {
@@ -97,8 +68,22 @@ export class AuthorSelectorComponent implements OnInit {
         }, 100)
     }
 
+    private addAuthorIfNotExists(author: Author) {
+        let found: boolean = false;
+        this.authors.forEach((a) => {
+            if (a.authorId === author.authorId) {
+                found = true;
+                return;
+            }
+            1
+        });
+        if (!found) {
+            console.debug("Added to authors", author);
+            this.authors.push(author);
+        }
+    }
+
     clear() {
-        console.debug("Clear called in author selector");
         this.selectedAuthor = null;
     }
 }

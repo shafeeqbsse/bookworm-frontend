@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, Output, EventEmitter} from "@angular/core";
 import {Observable} from "rxjs";
 import {PublisherService} from "../../services/publisher.service";
 import {Publisher} from "../../../models/Publisher";
@@ -10,10 +10,13 @@ import {Publisher} from "../../../models/Publisher";
 })
 export class PublisherSelectorComponent implements OnInit {
 
-    public selectedPublisher: Publisher;
+    @Output() onPublisherChanged = new EventEmitter();
+
+    selectedPublisher: any;
 
     searching: boolean = false;
     searchFailed: boolean = false;
+    hasPublisher: boolean;
 
     constructor(private publisherService: PublisherService) {
     }
@@ -40,13 +43,23 @@ export class PublisherSelectorComponent implements OnInit {
         return p.name + ", " + p.city + ", " + p.country;
     };
 
-
-    showSelected() {
-        if (this.selectedPublisher.publisherId) {
-            console.debug("Selected Publisher:", this.selectedPublisher);
-        } else {
-            console.debug("Selected Publisher:", "None yet");
-        }
+    removePublisher() {
+        console.debug("removePublisher");
+        this.hasPublisher = false;
+        this.onPublisherChanged.emit(null);
+        this.selectedPublisher = null;
     }
 
+    onSelectPublisher(item: any) {
+        const selected: Publisher = item.item;
+        console.debug("Item selected from lookahead", selected);
+        if (selected.publisherId) {
+            this.onPublisherChanged.emit(selected);
+        } else {
+            this.onPublisherChanged.emit(null);
+            console.debug("Selected Author:", "None yet");
+        }
+        this.hasPublisher = true;
+        console.debug("HasPublisher", this.hasPublisher);
+    }
 }

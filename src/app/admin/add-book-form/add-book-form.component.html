@@ -6,11 +6,11 @@
 
     <br/>
 
-    <app-publisher-selector></app-publisher-selector>
+    <app-publisher-selector (onPublisherChanged)="onPublisherChange($event)"></app-publisher-selector>
 
     <br/>
 
-    <app-author-selector></app-author-selector>
+    <app-author-selector (onAuthorsChanged)="onAuthorsChange($event)"></app-author-selector>
 
     <br/>
 
@@ -52,6 +52,6 @@
 
     <br/>
 
-    <input class="submit-input" type="submit" value="Save" [disabled]="!bookForm.valid"/>
+    <input class="submit-input" type="submit" value="Save" [disabled]="!isFormValid()"/>
     <div [hidden]="!addBookFailed">Please fill in all required fields</div>
 </form>

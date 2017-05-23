@@ -3,14 +3,13 @@
 </ng-template>
 
 <label for="inputAuthor">Authors</label>
-<input id="inputAuthor" type="text" [ngbTypeahead]="search" placeholder="Author search"
+<input id="inputAuthor" type="text" [ngbTypeahead]="search"
+       placeholder="Start typing to find an author..."
        [inputFormatter]="formatter"
        [resultTemplate]="rt"
        (selectItem)="onSelectAuthor($event)"
        [(ngModel)]="selectedAuthor"
-       (keydown.enter)="addSelected()"
 /><span *ngIf="searching"> Loading...</span>
-<button type="button" (click)="addSelected()">Add</button>
 <span *ngFor="let author of authors"
       class="badge badge-default badge-pill"
       (click)="removeAuthor(author.authorId)">
