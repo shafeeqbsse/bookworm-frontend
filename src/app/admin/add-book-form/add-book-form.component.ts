@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {FormGroup, Validators, FormBuilder} from "@angular/forms";
-import {Book} from "../../models/Book";
 import {BookService} from "../../books/services/book.service";
 import {Author} from "../../models/Author";
 import {Publisher} from "../../models/Publisher";
+import {BookData} from "../../models/BookData";
 
 @Component({
     selector: 'app-add-book-form',
@@ -43,11 +43,15 @@ export class AddBookFormComponent implements OnInit {
     }
 
     onSubmit(formData) {
-        let book: Book = new Book();
+        let book: BookData = new BookData();
         book.title = formData.title;
         book.description = formData.description;
-        book.authors = this.authors;
-        book.publisher = this.selectedPublisher;
+
+        book.authors = [];
+        this.authors.forEach((b) => {
+            book.authors.push({'authorId': b.authorId})
+        });
+        book.publisher = {'publisherId': this.selectedPublisher.publisherId};
         book.format = formData.format;
         book.genre = formData.genre;
         book.isbn = formData.isbn;
