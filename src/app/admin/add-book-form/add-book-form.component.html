@@ -1,0 +1,57 @@
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit(bookForm.value)">
+    <label for="inputTitle">Title</label>
+    <input class="text-input" formControlName="title" type="text" id="inputTitle" placeholder="Book title">
+    <!--<div *ngIf="bookForm.controls['title'].hasError('required')-->
+    <!--&& bookForm.controls['title'].touched"> Please add a title for the book.</div>-->
+
+    <br/>
+
+    <app-publisher-selector (onPublisherChanged)="onPublisherChange($event)"></app-publisher-selector>
+
+    <br/>
+
+    <app-author-selector (onAuthorsChanged)="onAuthorsChange($event)"></app-author-selector>
+
+    <br/>
+
+
+    <label for="inputDescription">Description</label>
+    <input class="text-input" formControlName="description" type="text" id="inputDescription" placeholder="Description">
+    <!--<div *ngIf="bookForm.controls['description'].hasError('required')-->
+    <!--&& bookForm.controls['description'].touched"> Please add a description for the book.</div>-->
+
+    <br/>
+
+    <label for="inputGenre">Genre</label>
+    <input class="text-input" formControlName="genre" type="text" id="inputGenre" placeholder="Genre">
+
+    <br/>
+
+    <label for="inputFormat">Format</label>
+    <input class="text-input" formControlName="format" type="text" id="inputFormat" placeholder="Format">
+
+    <br/>
+
+    <label for="inputPrice">Price</label>
+    <input class="text-input" formControlName="price" type="number" id="inputPrice" placeholder="Price">
+
+    <br/>
+
+    <label for="inputStock">Stock</label>
+    <input class="text-input" formControlName="stock" type="number" id="inputStock" placeholder="Stock">
+
+    <br/>
+
+    <label for="inputPages">Pages</label>
+    <input class="text-input" formControlName="pages" type="number" id="inputPages" placeholder="Pages">
+
+    <br/>
+
+    <label for="inputIsbn">Isbn</label>
+    <input class="text-input" formControlName="isbn" type="text" id="inputIsbn" placeholder="Isbn">
+
+    <br/>
+
+    <input class="submit-input" type="submit" value="Save" [disabled]="!isFormValid()"/>
+    <div [hidden]="!addBookFailed">Please fill in all required fields</div>
+</form>

@@ -1,0 +1,19 @@
+<ng-template #rt let-r="result" let-t="term">
+    {{ r.name }}, {{r.city}}, {{r.country}}
+</ng-template>
+
+<label for="inputPublisher">Publisher</label>
+<input id="inputPublisher" type="text" placeholder="Start typing to find a publisher..."
+       (selectItem)="onSelectPublisher($event)"
+       [ngbTypeahead]="search"
+       [inputFormatter]="formatter"
+       [resultTemplate]="rt"
+       [readonly]="hasPublisher"
+       [(ngModel)]="selectedPublisher"
+/><span *ngIf="searching" > Loading...</span>
+<span *ngIf="hasPublisher"
+      class="badge badge-default badge-pill"
+      (click)="removePublisher()">
+    Clear
+    <i class="fa fa-times" aria-hidden="true"></i>
+</span>
