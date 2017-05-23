@@ -13,6 +13,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {BrowseBooksModule} from "./books/browse-books.module";
 import {TestModule} from "./test/test.module";
 import {ShoppingCartModule} from "./shopping-cart/shopping-cart.module";
+import {AdminModule} from "./admin/admin.module";
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -35,6 +36,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         ShoppingCartModule,
         TestModule,
         BrowseBooksModule,
+        AdminModule,
         AppRoutingModule
     ],
     providers: [

@@ -36,16 +36,16 @@ export class BookService {
             });
     }
 
-    //
-    // buyBook(id: number, amount: string) {
-    //     const url: string = GLOBALS.API.ROOT + "/books/" + id + "/buy";
-    //     const headers = new Headers();
-    //     headers.append('Content-Type', 'application/json');
-    //     return this.http.post(url, amount)
-    //         .map(response => {
-    //             return response.json();
-    //         });
-    // }
+
+    buyBook(id: number, amount: number) {
+        const url: string = GLOBALS.API.ROOT + "/books/" + id + "/buy";
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.put(url, amount, {'headers': headers})
+            .map(response => {
+                return response.json();
+            });
+    }
 
     deleteBook(id: number) {
         const url: string = GLOBALS.API.ROOT + "/books/" + id;
