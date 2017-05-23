@@ -3,7 +3,9 @@
 </ng-template>
 
 <label for="inputPublisher">Publisher</label>
-<input id="inputPublisher" type="text" [ngbTypeahead]="search" placeholder="Publisher search"
+<input id="inputPublisher" type="text" placeholder="Publisher search"
+       formcontrolname="publisherCtrl"
+       [ngbTypeahead]="search"
        [inputFormatter]="formatter"
        [resultTemplate]="rt"
        [(ngModel)]="selectedPublisher"

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {FormGroup, Validators, FormBuilder} from "@angular/forms";
 import {Book} from "../../models/Book";
 import {BookService} from "../../books/services/book.service";
@@ -25,6 +25,7 @@ export class AddBookFormComponent implements OnInit {
     buildForm(): void {
         this.bookForm = this.fb.group({
             title: ['', Validators.compose([Validators.required])],
+            publisherCtrl: ['', Validators.compose([Validators.required])],
             description: ['', Validators.compose([Validators.required])],
             genre: ['', Validators.compose([Validators.required])],
             format: ['', Validators.compose([Validators.required])],
