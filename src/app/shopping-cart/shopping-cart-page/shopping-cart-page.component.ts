@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {ShoppingCartEntry, ShoppingCartService} from "../../shared/services/shopping-cart.service";
+import {BookService} from "../../books/services/book.service";
 
 @Component({
     selector: 'app-shopping-cart-page',
@@ -10,7 +11,7 @@ export class ShoppingCartPageComponent implements OnInit {
 
     public data:Array<ShoppingCartEntry>;
 
-    constructor(private shoppingCartService:ShoppingCartService) {
+    constructor(private shoppingCartService: ShoppingCartService, private bookService: BookService) {
     }
 
     ngOnInit() {
@@ -34,5 +35,20 @@ export class ShoppingCartPageComponent implements OnInit {
 
     private refresh() {
         this.data = this.shoppingCartService.getCart();
+    }
+
+    buyAllInCart() {
+        this.refresh();
+        this.data.forEach((entry) => {
+            this.bookService.buyBook(entry.id, entry.amount).subscribe(result => {
+                    console.debug("Bought", entry);
+                },
+                error => {
+                    console.error("Error buying a book", error);
+                })
+        });
+
+        this.shoppingCartService.clearCart();
+        this.refresh();
     }
 }
