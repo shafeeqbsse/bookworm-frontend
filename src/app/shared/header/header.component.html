@@ -1,39 +1,19 @@
-<!--<nav class="navbar navbar-default no-round-border">-->
-    <!--<div class="container">-->
-        <!--&lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
-        <!--<div class="navbar-header">-->
-            <!--<button type="button" class="navbar-toggle collapsed" (click)="isCollapsed = !isCollapsed"-->
-                    <!--aria-expanded="false">-->
-                <!--<span class="sr-only">Toggle navigation</span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-            <!--</button>-->
-            <!--<a class="navbar-brand" routerLink="/">BookWorms</a>-->
-        <!--</div>-->
-
-        <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
-        <!--<div class="collapse navbar-collapse" [collapse]="isCollapsed" *ngIf="authService.isAuthenticated">-->
-            <!--<ul class="nav navbar-nav">-->
-                <!--<li [routerLinkActive]="['active']" (click)="isCollapsed = true"><a class="nav-item nav-link link"-->
-                       <!--routerLink="/dashboard">Etusivu</a></li>-->
-                <!--<li *ngIf="checkUserRole()" [routerLinkActive]="['active']" (click)="isCollapsed = true"><a class="nav-item nav-link link" routerLink="/admin">Järjestelmän-->
-                    <!--asetukset</a>-->
-                <!--</li>-->
-            <!--</ul>-->
-            <!--<ul class="nav navbar-nav navbar-right">-->
-                <!--<li [routerLinkActive]="['active']" (click)="isCollapsed = true"><a class="nav-item nav-link link" routerLink="/profile">Käyttäjätili</a></li>-->
-                <!--<li><a class="nav-item nav-link link clickable" (click)="logout()">-->
-                        <!--Log out-->
-                    <!--</a>-->
-                <!--</li>-->
-            <!--</ul>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</nav>-->
-
-<div class="temp-header">
-    <h1 class="temp-header-title">Booky</h1>
-    <app-login-form [isMini]="true"></app-login-form>
-    <app-shopping-cart-button></app-shopping-cart-button>
-</div>
+<nav class="navbar navbar-toggleable-xl navbar-inverse bg-inverse">
+    <h1 class="navbar-brand mb-0" routerLink="/">BookWorms</h1>
+    <ul class="nav navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item mb-auto mt-auto">
+            <app-shopping-cart-button></app-shopping-cart-button>
+        </li>
+        <li class="nav-item mb-auto mt-auto">
+            <app-login-form [isMini]="true"></app-login-form>
+        </li>
+    </ul>
+</nav>
