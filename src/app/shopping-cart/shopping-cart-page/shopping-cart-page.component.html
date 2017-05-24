@@ -1,10 +1,10 @@
 <div>
     <ul class="list-group">
         <li class="list-group-item row">
-            <div class="col-7">
+            <div class="col-8">
                 <strong>Title</strong>
             </div>
-            <div class="col-1">
+            <div class="col-2">
                 <strong>Amount</strong>
             </div>
             <div class="col-1">
@@ -15,19 +15,22 @@
             </div>
         </li>
         <li *ngFor="let item of data" class="list-group-item row">
-            <div class="col-7">
+            <div class="col-8">
                 {{item.book.title}}
             </div>
-            <div class="col-1">
-                {{item.amount}}
+            <div class="col-2 btn-group" role="group">
+                <button type="button" class="btn btn-sm" (click)="decreaseAmount(item)"><i class="fa fa-minus"></i>
+                </button>
+                <div class="amount-display-number"> {{item.amount}}</div>
+                <button type="button" class="btn btn-sm" (click)="increaseAmount(item)"><i class="fa fa-plus"></i>
+                </button>
             </div>
             <div class="col-1">
                 {{item.book.price.toFixed(2)}} €
             </div>
-            <div class="col-3">
-                <button (click)="removeFromCart(item)"><i class="fa fa-remove"></i>Remove</button>
-                <button (click)="increaseAmount(item)"><i class="fa fa-plus"></i>Add</button>
-                <button (click)="decreaseAmount(item)"><i class="fa fa-minus"></i>Reduce</button>
+            <div class="col-1">
+                <button class="btn-outline-danger" (click)="removeFromCart(item)"><i class="fa fa-remove fa-r"></i>
+                </button>
             </div>
         </li>
         <li class="list-group-item row">
