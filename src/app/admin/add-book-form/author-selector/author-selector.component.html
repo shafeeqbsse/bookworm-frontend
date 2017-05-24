@@ -2,17 +2,21 @@
     {{ r.firstName }} {{r.lastName}}
 </ng-template>
 
-<label for="inputAuthor">Authors</label>
-<input id="inputAuthor" type="text" [ngbTypeahead]="search"
-       placeholder="Start typing to find an author..."
-       [inputFormatter]="formatter"
-       [resultTemplate]="rt"
-       (selectItem)="onSelectAuthor($event)"
-       [(ngModel)]="selectedAuthor"
-/><span *ngIf="searching"> Loading...</span>
-<span *ngFor="let author of authors"
-      class="badge badge-default badge-pill"
-      (click)="removeAuthor(author.authorId)">
-    {{' ' + author.firstName + ' ' + author.lastName}}
-    <i class="fa fa-times" aria-hidden="true"></i>
-</span>
+<div class="form-group row">
+    <label class="col-2 col-form-label" for="inputAuthor">Authors</label>
+    <div class="col-10">
+        <input class="form-control" id="inputAuthor" type="text" [ngbTypeahead]="search"
+               placeholder="Start typing to find an author..."
+               [inputFormatter]="formatter"
+               [resultTemplate]="rt"
+               (selectItem)="onSelectAuthor($event)"
+               [(ngModel)]="selectedAuthor"/>
+        <span *ngIf="searching"> Loading...</span>
+        <span *ngFor="let author of authors"
+              class="badge badge-default badge-pill"
+              (click)="removeAuthor(author.authorId)">
+            {{' ' + author.firstName + ' ' + author.lastName}}
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </span>
+    </div>
+</div>
