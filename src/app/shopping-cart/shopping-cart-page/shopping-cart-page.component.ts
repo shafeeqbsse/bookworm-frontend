@@ -11,6 +11,8 @@ export class ShoppingCartPageComponent implements OnInit {
 
     public data:Array<ShoppingCartEntry>;
 
+    public total: number = 10;
+
     constructor(private shoppingCartService: ShoppingCartService, private bookService: BookService) {
     }
 
@@ -35,6 +37,7 @@ export class ShoppingCartPageComponent implements OnInit {
 
     private refresh() {
         this.data = this.shoppingCartService.getCart();
+        this.total = this.calculateTotal();
     }
 
     buyAllInCart() {
@@ -50,5 +53,14 @@ export class ShoppingCartPageComponent implements OnInit {
 
         this.shoppingCartService.clearCart();
         this.refresh();
+    }
+
+    private calculateTotal(): number {
+        let total: number = 0;
+        this.data.forEach((entry) => {
+            total += entry.book.price * entry.amount;
+        });
+        console.debug("calculateTotal", total);
+        return total;
     }
 }
