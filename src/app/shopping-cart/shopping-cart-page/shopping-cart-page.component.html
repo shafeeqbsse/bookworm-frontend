@@ -34,10 +34,11 @@
             </div>
         </li>
         <li class="list-group-item row">
-            <div class="col-1">Total</div>
+            <div class="col-1"><strong>Total</strong></div>
             <div class="col-1 offset-7">{{total.toFixed(2)}} €</div>
             <div class="col-3">
-                <button (click)="buyAllInCart()" [disabled]="cartEmpty()">Purchase all in cart</button>
+                <button class="btn btn-block" (click)="buyAllInCart()" [disabled]="cartEmpty()">Purchase all in cart
+                </button>
             </div>
         </li>
     </ul>
