@@ -15,3 +15,7 @@
 .shopping_cart_icon {
 
 }
+
+#shopping_cart_button {
+    display: inline-block;
+}

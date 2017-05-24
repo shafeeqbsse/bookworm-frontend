@@ -1,14 +1,47 @@
 <div>
-    <ul>
-        <li *ngFor="let item of data">
-            {{item.book.title}}
-            {{item.amount}}
-            <button (click)="removeFromCart(item)"><i class="fa fa-remove"></i>Remove</button>
-            <button (click)="increaseAmount(item)"><i class="fa fa-plus"></i>Add</button>
-            <button (click)="decreaseAmount(item)"><i class="fa fa-minus"></i>Reduce</button>
+    <ul class="list-group">
+        <li class="list-group-item row">
+            <div class="col-8">
+                <strong>Title</strong>
+            </div>
+            <div class="col-2">
+                <strong>Amount</strong>
+            </div>
+            <div class="col-1">
+                <strong>Price</strong>
+            </div>
+            <div class="col-3">
 
+            </div>
+        </li>
+        <li *ngFor="let item of data" class="list-group-item row">
+            <div class="col-8">
+                {{item.book.title}}
+            </div>
+            <div class="col-2 btn-group" role="group">
+                <button type="button" class="btn btn-sm" (click)="decreaseAmount(item)"><i class="fa fa-minus"></i>
+                </button>
+                <div class="amount-display-number"> {{item.amount}}</div>
+                <button type="button" class="btn btn-sm" (click)="increaseAmount(item)"><i class="fa fa-plus"></i>
+                </button>
+            </div>
+            <div class="col-1">
+                {{item.book.price.toFixed(2)}} €
+            </div>
+            <div class="col-1">
+                <button class="btn-outline-danger" (click)="removeFromCart(item)"><i class="fa fa-remove fa-r"></i>
+                </button>
+            </div>
+        </li>
+        <li class="list-group-item row">
+            <div class="col-1"><strong>Total</strong></div>
+            <div class="col-1 offset-9">{{total.toFixed(2)}} €</div>
+            <div class="col-3 offset-8">
+                <button class="btn btn-block" (click)="buyAllInCart()" [disabled]="cartEmpty()">
+                    Purchase all in cart
+                </button>
+            </div>
         </li>
     </ul>
 </div>
 
-<button (click)="buyAllInCart()">Buy all</button>
