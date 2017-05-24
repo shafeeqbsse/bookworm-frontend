@@ -3,9 +3,31 @@
 
     <div class="form-group row">
         <label for="inputStars" class="col-2 col-form-label">Stars</label>
-        <div class="col-10">
-            <input class="form-control" type="number" min="1" max="5" formControlName="stars" id="inputStars"
-                   placeholder="1-5 stars">
+        <div id="inputStars" class="col-10">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-control" type="radio" formControlName="stars" value="1">
+                    <i class="fa fa-star"></i>
+                </label>
+                <label class="form-check-label">
+                    <input class="form-control" type="radio" formControlName="stars" value="2">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </label>
+                <label class="form-check-label">
+                    <input class="form-control" type="radio" formControlName="stars" value="3">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                </label>
+                <label class="form-check-label">
+                    <input class="form-control" type="radio" formControlName="stars" value="4">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                    class="fa fa-star"></i>
+                </label>
+                <label class="form-check-label">
+                    <input class="form-control" type="radio" formControlName="stars" value="5">
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                    class="fa fa-star"></i><i class="fa fa-star"></i>
+                </label>
+            </div>
         </div>
     </div>
     <!--<div *ngIf="bookForm.controls['title'].hasError('required')-->
