@@ -7,11 +7,13 @@ import {AppRoutingModule} from "../app-routing.module";
 import {AuthModule} from "../auth/auth.module";
 import {ShoppingCartService} from "./services/shopping-cart.service";
 import {ShoppingCartButtonComponent} from "./shopping-cart-button/shopping-cart-button.component";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
     imports: [
         CommonModule,
         AuthModule,
+        NgbModule,
         AppRoutingModule
     ],
     exports: [
