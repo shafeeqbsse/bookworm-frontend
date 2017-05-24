@@ -60,7 +60,10 @@ export class ShoppingCartPageComponent implements OnInit {
         this.data.forEach((entry) => {
             total += entry.book.price * entry.amount;
         });
-        console.debug("calculateTotal", total);
         return total;
+    }
+
+    cartEmpty() {
+        return !(this.data.length > 0);
     }
 }
