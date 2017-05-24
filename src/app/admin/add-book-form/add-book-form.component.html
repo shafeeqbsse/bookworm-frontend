@@ -1,57 +1,80 @@
 <form [formGroup]="bookForm" (ngSubmit)="onSubmit(bookForm.value)">
-    <label for="inputTitle">Title</label>
-    <input class="text-input" formControlName="title" type="text" id="inputTitle" placeholder="Book title">
+
+    <h3>Add a new book:</h3>
+
+    <div class="form-group row">
+        <label for="inputTitle" class="col-2 col-form-label">Title</label>
+        <div class="col-10">
+            <input class="form-control" formControlName="title" type="text" id="inputTitle" placeholder="Book title">
+        </div>
+    </div>
     <!--<div *ngIf="bookForm.controls['title'].hasError('required')-->
     <!--&& bookForm.controls['title'].touched"> Please add a title for the book.</div>-->
 
-    <br/>
-
     <app-publisher-selector (onPublisherChanged)="onPublisherChange($event)"></app-publisher-selector>
-
-    <br/>
 
     <app-author-selector (onAuthorsChanged)="onAuthorsChange($event)"></app-author-selector>
 
-    <br/>
 
-
-    <label for="inputDescription">Description</label>
-    <input class="text-input" formControlName="description" type="text" id="inputDescription" placeholder="Description">
+    <div class="form-group row">
+        <label for="inputDescription" class="col-2 col-form-label">Description</label>
+        <div class="col-10">
+            <textarea rows="3" class="form-control" formControlName="description" id="inputDescription"
+                      placeholder="Describe the book..."></textarea>
+        </div>
+    </div>
     <!--<div *ngIf="bookForm.controls['description'].hasError('required')-->
     <!--&& bookForm.controls['description'].touched"> Please add a description for the book.</div>-->
 
-    <br/>
+    <div class="form-group row">
+        <label for="inputGenre" class="col-2 col-form-label">Genre</label>
+        <div class="col-10">
+            <input class="form-control" formControlName="genre" type="text" id="inputGenre" placeholder="Genre">
+        </div>
+    </div>
 
-    <label for="inputGenre">Genre</label>
-    <input class="text-input" formControlName="genre" type="text" id="inputGenre" placeholder="Genre">
 
-    <br/>
+    <div class="form-group row">
+        <label for="inputFormat" class="col-2 col-form-label">Format</label>
+        <div class="col-10">
+            <input class="form-control" formControlName="format" type="text" id="inputFormat" placeholder="Format">
+        </div>
+    </div>
 
-    <label for="inputFormat">Format</label>
-    <input class="text-input" formControlName="format" type="text" id="inputFormat" placeholder="Format">
+    <div class="form-group row">
+        <label for="inputPrice" class="col-2 col-form-label">Price</label>
+        <div class="col-10">
+            <input class="form-control" formControlName="price" type="number" id="inputPrice" placeholder="Price">
+        </div>
+    </div>
 
-    <br/>
+    <div class="form-group row">
+        <label for="inputStock" class="col-2 col-form-label">Stock</label>
+        <div class="col-10">
+            <input class="form-control" formControlName="stock" type="number" id="inputStock"
+                   placeholder="Books in stock">
+        </div>
+    </div>
 
-    <label for="inputPrice">Price</label>
-    <input class="text-input" formControlName="price" type="number" id="inputPrice" placeholder="Price">
+    <div class="form-group row">
+        <label for="inputPages" class="col-2 col-form-label">Pages</label>
+        <div class="col-10">
+            <input class="form-control" formControlName="pages" type="number" id="inputPages"
+                   placeholder="Amount of pages">
+        </div>
+    </div>
 
-    <br/>
+    <div class="form-group row">
+        <label for="inputIsbn" class="col-2 col-form-label">ISBN</label>
+        <div class="col-10">
+            <input class="form-control" formControlName="isbn" type="text" id="inputIsbn" placeholder="ISBN code">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-10 offset-2">
+            <input class="submit-input" type="submit" value="Save" [disabled]="!isFormValid()"/>
+            <div [hidden]="!addBookFailed">Please fill in all required fields</div>
+        </div>
+    </div>
 
-    <label for="inputStock">Stock</label>
-    <input class="text-input" formControlName="stock" type="number" id="inputStock" placeholder="Stock">
-
-    <br/>
-
-    <label for="inputPages">Pages</label>
-    <input class="text-input" formControlName="pages" type="number" id="inputPages" placeholder="Pages">
-
-    <br/>
-
-    <label for="inputIsbn">Isbn</label>
-    <input class="text-input" formControlName="isbn" type="text" id="inputIsbn" placeholder="Isbn">
-
-    <br/>
-
-    <input class="submit-input" type="submit" value="Save" [disabled]="!isFormValid()"/>
-    <div [hidden]="!addBookFailed">Please fill in all required fields</div>
 </form>
