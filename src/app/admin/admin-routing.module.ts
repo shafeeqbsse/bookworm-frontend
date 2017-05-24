@@ -1,9 +1,10 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {NgModule} from "@angular/core";
+import {Routes, RouterModule} from "@angular/router";
 import {AdminPageComponent} from "./admin-page/admin-page.component";
+import {AdminGuard} from "../auth/guards/AdminGuard";
 
 const routes: Routes = [
-    {path:'admin', component:AdminPageComponent}
+    {path: 'admin', canActivate: [AdminGuard], component: AdminPageComponent}
 ];
 
 @NgModule({
