@@ -15,6 +15,7 @@ export class BrowseBooksPageComponent implements OnInit {
     public books: Array<Book>;
 
     constructor(private bookService: BookService, private route: ActivatedRoute) {
+        this.books = [];
     }
 
     ngOnInit() {
@@ -53,13 +54,22 @@ export class BrowseBooksPageComponent implements OnInit {
             });*/
 
         this.route.params.subscribe(params => {
-            this.bookService.getBooksByGenre(params.genre).subscribe(response => {
-                    this.books = response;
-                },
-                error => {
-                    console.error("Getting books failed:", error);
-                });
+                if (params.genre == 'all') {
+                    this.bookService.getBooks().subscribe(response => {
+                            this.books = response;
+                        },
+                        error => {
+                            console.error("Getting books failed:", error);
+                        });
+                } else {
+                    this.bookService.getBooksByGenre(params.genre).subscribe(response => {
+                            this.books = response;
+                        },
+                        error => {
+                            console.error("Getting books failed:", error);
+                        });
 
+                }
             }, error => {
                 console.error("Route param error", error);
             }

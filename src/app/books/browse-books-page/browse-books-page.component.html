@@ -9,5 +9,6 @@
             <p>Price: {{book.price}}</p>
             <button class="btn">Add to cart</button>
         </li>
+        <li class="list-group-item" *ngIf="books.length == 0">No books with selected genre</li>
     </ul>
 </div>
