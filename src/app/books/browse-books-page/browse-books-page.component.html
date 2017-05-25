@@ -22,7 +22,7 @@
                                 <span *ngFor="let author of book.authors">{{author.firstName}} {{author.lastName}}<br></span>
                             </div>
                         </div>
-                        <p><strong>Price:</strong> {{book.price}}</p>
+                        <p><strong>Price:</strong> {{book.price}}€</p>
                         <button class="btn" [routerLink]="['/book', book.bookId]">Details</button>
                         <button class="btn" (click)="addToCart(book)">Add to cart</button>
                     </div>
