@@ -26,6 +26,14 @@ export class BookService {
             })
     }
 
+    searchBooks(searchWord: string) {
+        let url: string = GLOBALS.API.ROOT + "/books/search/" + searchWord;
+        return this.http.get(url)
+            .map(response => {
+                return response.json();
+            })
+    }
+
     getBook(id: number) {
         let url: string = GLOBALS.API.ROOT + "/books/" + id;
         return this.http.get(url)
