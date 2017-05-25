@@ -2,3 +2,22 @@ li p {
     display: block;
     width: 100%;
 }
+
+.container {
+    margin-top: 10px;
+}
+
+.text-input {
+    width: 50%;
+}
+
+img {
+    width: 100px;
+    height: 150px;
+    margin: auto auto;
+}
+
+.authors {
+    float: left;
+    padding-left: 30px;
+}

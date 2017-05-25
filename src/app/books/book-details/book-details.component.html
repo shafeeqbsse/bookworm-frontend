@@ -1,34 +1,71 @@
 <div class="container">
     <div class="card" *ngIf="book">
-        <p class="text-center">{{book.title}}</p>
-        <p>{{book.description}}</p>
-        <div class="row">
-            <div class="col-sm-6">
-                <p>Authors:</p>
-                <p>Some random guy</p>
-                <p>Publisher:</p>
-                <p>OOP</p>
+        <div class="card-block">
+            <h4 class="text-center">{{book.title}}</h4>
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="http://smartmobilestudio.com/wp-content/uploads/2012/06/leather-book-preview.png"/>
+                </div>
+                <div class="col-sm-8">
+                    <p class="description">{{book.description}}</p>
+                </div>
             </div>
-            <div class="col-sm-6">
-                <p>Genre:</p>
-                <p>{{book.genre}}</p>
-                <p>Format:</p>
-                <p>{{book.format}}</p>
-                <p>Pages:</p>
-                <p>{{book.pages}}</p>
-                <p>ISBN:</p>
-                <p>{{book.isbn}}</p>
+            <hr/>
+            <div class="row">
+                <div class="col-sm-4 offset-sm-1">
+                    <div class="row">
+                        <h6 class="col-sm-6">Authors:</h6>
+                        <div class="col-sm-6">
+                            <span *ngFor="let author of book.authors">{{author.firstName}} {{author.lastName}}</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <h6 class="col-sm-6">Publisher:</h6>
+                        <div class="col-sm-6">
+                            <span>{{book.publisher.name}}</span>
+                            <span *ngIf="book.publisher.city != 'Unknown'">{{book.publisher.city}}</span>
+                            <span *ngIf="book.publisher.country != 'Unknown'">{{book.publisher.country}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 offset-sm-2">
+                    <div class="row">
+                        <h6 class="col-sm-6">Genre:</h6>
+                        <div class="col-sm-6">
+                            <span>{{book.genre}}</span><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h6 class="col-sm-6">Format:</h6>
+                        <div class="col-sm-6">
+                            <span>{{book.format}}</span><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h6 class="col-sm-6">Pages:</h6>
+                        <div class="col-sm-6">
+                            <span>{{book.pages}}</span><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h6 class="col-sm-6">ISBN:</h6>
+                        <div class="col-sm-6">
+                            <span>{{book.isbn}}</span><br>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4">
-                <p>Stock: {{book.stock}}</p>
-            </div>
-            <div class="col-sm-4">
-                <p>Price: {{book.price}}</p>
-            </div>
-            <div class="col-sm-4">
-                <button class="btn" (click)="addToCart()">Add to cart</button>
+            <div class="col-sm-4 offset-sm-7">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Stock: {{book.stock}}</p>
+                        <h5>Price: {{book.price}}</h5>
+                    </div>
+                    <button class="btn" (click)="addToCart()">Add to cart</button>
+                </div>
             </div>
         </div>
         <div class="row mt-5" *ngIf="book">

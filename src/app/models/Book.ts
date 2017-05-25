@@ -15,4 +15,5 @@ export class Book {
     reviews: Array<Review>;
     stock: number;
     title: string;
+    shortDesc?: string;
 }

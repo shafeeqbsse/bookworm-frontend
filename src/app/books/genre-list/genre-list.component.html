@@ -1,4 +1,4 @@
-<div style="width: 100px; height: 300px;">
+<div style="width: 100%; height: 300px;">
     <ul class="list-group">
         <li class="list-group-item" [routerLink]="['/browse', {'genre': 'all'}]">All</li>
         <li *ngFor="let genre of genres" class="list-group-item" [routerLink]="['/browse', {'genre': genre.name}]">
