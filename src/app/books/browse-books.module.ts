@@ -5,11 +5,14 @@ import {BrowseBooksRoutingModule} from "./browse-books-routing.module";
 import {BookService} from "./services/book.service";
 import {GenreService} from "./services/genre.service";
 import { GenreListComponent } from './genre-list/genre-list.component';
+import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 
 @NgModule({
     imports: [
         CommonModule,
-        BrowseBooksRoutingModule
+        BrowseBooksRoutingModule,
+        ReactiveFormsModule,
+        FormsModule
     ],
     declarations: [BrowseBooksPageComponent, GenreListComponent],
     providers: [BookService, GenreService]

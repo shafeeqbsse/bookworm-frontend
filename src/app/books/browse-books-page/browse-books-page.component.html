@@ -1,14 +1,21 @@
 <div class="row">
     <app-genre-list class="col-sm-2"></app-genre-list>
-    <ul class="list-group col-sm-10">
-        <li *ngFor="let book of books" class="list-group-item">
-            <p>Title: {{book.title}}</p>
-            <p>Genre: {{book.genre}}</p>
-            <p>Format: {{book.format}}</p>
-            <p>In stock: {{book.stock}}</p>
-            <p>Price: {{book.price}}</p>
-            <button class="btn">Add to cart</button>
-        </li>
-        <li class="list-group-item" *ngIf="books.length == 0">No books with selected genre</li>
-    </ul>
+    <div class="col-sm-10">
+        <form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm.value)">
+            <input class="text-input" formControlName="searchWord" type="text" id="searchWord" placeholder="">
+            <input class="submit-input" type="submit" value="Search"/>
+        </form>
+        <br>
+        <ul class="list-group">
+            <li *ngFor="let book of books" class="list-group-item">
+                <p>Title: {{book.title}}</p>
+                <p>Genre: {{book.genre}}</p>
+                <p>Format: {{book.format}}</p>
+                <p>In stock: {{book.stock}}</p>
+                <p>Price: {{book.price}}</p>
+                <button class="btn">Add to cart</button>
+            </li>
+            <li class="list-group-item" *ngIf="books.length == 0">No books with selected genre</li>
+        </ul>
+    </div>
 </div>

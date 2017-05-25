@@ -4,6 +4,7 @@ import {Book} from "../../models/Book";
 import {Publisher} from "../../models/Publisher";
 import {Author} from "../../models/Author";
 import {ActivatedRoute} from "@angular/router";
+import {FormGroup, FormBuilder} from "@angular/forms";
 
 @Component({
     selector: 'app-browse-books-page',
@@ -13,9 +14,18 @@ import {ActivatedRoute} from "@angular/router";
 export class BrowseBooksPageComponent implements OnInit {
 
     public books: Array<Book>;
+    searchForm: FormGroup;
 
-    constructor(private bookService: BookService, private route: ActivatedRoute) {
+    constructor(private fb: FormBuilder, private bookService: BookService, private route: ActivatedRoute) {
         this.books = [];
+
+        this.searchForm = this.fb.group({
+            searchWord: ['']
+        });
+    }
+
+    onSubmit(values) {
+
     }
 
     ngOnInit() {
