@@ -2,6 +2,7 @@ import {Component, OnInit, Input} from "@angular/core";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {Review} from "../../models/Review";
 import {ReviewService} from "../services/review.service";
+import {AuthService} from "../../auth/services/auth.service";
 
 @Component({
     selector: 'app-add-review-form',
@@ -14,7 +15,7 @@ export class AddReviewFormComponent implements OnInit {
 
     @Input() bookId: number;
 
-    constructor(private reviewService: ReviewService, private fb: FormBuilder) {
+    constructor(private reviewService: ReviewService, private fb: FormBuilder, public authService: AuthService) {
     }
 
     ngOnInit() {

@@ -7,12 +7,14 @@ import {ReviewListComponent} from "./review-list/review-list.component";
 import {SharedModule} from "../shared/shared.module";
 import {ReviewTabbedContainerComponent} from "./review-tabbed-container/review-tabbed-container.component";
 import {ReviewAverageDisplayComponent} from "./review-average-display/review-average-display.component";
+import {AuthModule} from "../auth/auth.module";
 
 @NgModule({
     imports: [
         CommonModule,
         SharedModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        AuthModule
     ],
     declarations: [AddReviewFormComponent, ReviewListComponent, ReviewTabbedContainerComponent, ReviewAverageDisplayComponent],
     exports: [AddReviewFormComponent, ReviewListComponent, ReviewTabbedContainerComponent, ReviewAverageDisplayComponent],
