@@ -16,10 +16,14 @@ export class BrowseBooksPageComponent implements OnInit {
 
     public books: Array<Book>;
     searchForm: FormGroup;
+    page: number;
+    private genre: string;
+    searchWord: string;
+    pages: number;
 
     constructor(private fb: FormBuilder, private cartService: ShoppingCartService, private bookService: BookService, private route: ActivatedRoute) {
         this.books = [];
-
+        this.page = 1;
         this.searchForm = this.fb.group({
             searchWord: ['']
         });
@@ -30,73 +34,40 @@ export class BrowseBooksPageComponent implements OnInit {
     }
 
     onSubmit(values) {
+        this.genre = "";
         if (values.searchWord && values.searchWord != "") {
-            this.bookService.searchBooks(values.searchWord).subscribe(response => {
-                    this.books = response;
-                },
-                error => {
-                    console.error("Getting books failed:", error);
-                });
+            this.searchWord = values.searchWord;
+            this.getBooksBySearch();
         } else {
-            this.bookService.getBooks().subscribe(response => {
-                    this.books = response;
-                },
-                error => {
-                    console.error("Getting books failed:", error);
-                });
+            this.searchWord = "";
+            this.getBooks();
+        }
+    }
+
+    movePage(pageAmount) {
+        this.page += pageAmount;
+
+        if (this.searchWord != "") {
+            this.getBooksBySearch();
+        } else if (this.genre != "") {
+            this.getBookByGenre();
+        } else {
+            this.getBooks();
         }
     }
 
     ngOnInit() {
-        this.bookService.getBooks().subscribe(response => {
-                this.books = response;
-            },
-            error => {
-                console.error("Getting books failed:", error);
-            });
+        this.getBooks();
 
-        /*this.bookService.getBook(1).subscribe(response => {
-                console.debug("Got Book 1:", response);
-            },
-            error => {
-                console.error("Getting book 1 failed:", error);
-            });
-
-        let book: Book = new Book();
-        book.authors = [new Author()];
-        book.description = "Description of test book";
-        book.format = "Format of text book";
-        book.genre = "JS";
-        book.isbn = "1234567TEST";
-        book.pages = 500;
-        book.price = 19.95;
-        book.publisher = new Publisher();
-        book.reviews = [];
-        book.stock = 10;
-        book.title = "This is a test book title";
-
-        this.bookService.saveBook(book).subscribe(result => {
-                console.debug("Saved test book:", result);
-            },
-            error => {
-                console.error("Saving book failed", error);
-            });*/
-
-        this.route.params.subscribe(params => {
+        this.route.params.subscribe(
+            params => {
+                this.searchWord = "";
                 if (params.genre == 'all') {
-                    this.bookService.getBooks().subscribe(response => {
-                            this.books = response;
-                        },
-                        error => {
-                            console.error("Getting books failed:", error);
-                        });
+                    this.genre = "";
+                    this.getBooks();
                 } else {
-                    this.bookService.getBooksByGenre(params.genre).subscribe(response => {
-                            this.books = response;
-                        },
-                        error => {
-                            console.error("Getting books failed:", error);
-                        });
+                    this.genre = params.genre;
+                    this.getBookByGenre();
 
                 }
             }, error => {
@@ -105,14 +76,33 @@ export class BrowseBooksPageComponent implements OnInit {
         )
     }
 
-    /*handleDeleteBook() {
-        // console.debug("Button clicked");
-        this.bookService.deleteBook(1).subscribe(response => {
-                console.debug(response);
+    getBooks() {
+        this.bookService.getBooks(this.page).subscribe(response => {
+                this.books = response.content;
+                this.pages = response.totalPages;
             },
             error => {
-                console.error("deleting book failed", error)
+                console.error("Getting books failed:", error);
             });
     }
-    */
+
+    getBookByGenre() {
+        this.bookService.getBooksByGenre(this.page, this.genre).subscribe(response => {
+                this.books = response.content;
+                this.pages = response.totalPages;
+            },
+            error => {
+                console.error("Getting books failed:", error);
+            });
+    }
+
+    getBooksBySearch() {
+        this.bookService.searchBooks(this.page, this.searchWord).subscribe(response => {
+                this.books = response.content;
+                this.pages = response.totalPages;
+            },
+            error => {
+                console.error("Getting books failed:", error);
+            });
+    }
 }
