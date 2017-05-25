@@ -12,18 +12,18 @@ import {ShoppingCartService} from "../../shared/services/shopping-cart.service";
 })
 export class BrowseBooksPageComponent implements OnInit {
 
-    public books: Array<Book>;
+    books: Array<Book>;
     searchForm: FormGroup;
     page: number;
-    private genre: string;
-    searchWord: string;
+    genre: string;
     totalItems: number;
+    state: number;
 
     constructor(private fb: FormBuilder, private cartService: ShoppingCartService, private bookService: BookService, private route: ActivatedRoute) {
         this.books = [];
+        this.state = 0;
         this.page = 1;
         this.genre = "";
-        this.searchWord = "";
         this.searchForm = this.fb.group({
             searchWord: ['']
         });
@@ -33,23 +33,26 @@ export class BrowseBooksPageComponent implements OnInit {
         this.cartService.addToCart(book);
     }
 
-    onSubmit(values) {
+    search() {
         this.genre = "";
-        if (values.searchWord && values.searchWord != "") {
-            this.searchWord = values.searchWord;
+        console.log("hello2");
+        if (this.searchForm.value.searchWord && this.searchForm.value.searchWord != "") {
+            console.log("jell");
             this.getBooksBySearch();
         } else {
-            this.searchWord = "";
+            console.log("haf");
             this.getBooks();
         }
         this.page = 0;
     }
 
     onPager(event: any) {
+        console.log("hellofor" + this.state);
         this.page = event;
-        if (this.searchWord != "") {
+        console.log(this.page);
+        if (this.state == 2) {
             this.getBooksBySearch();
-        } else if (this.genre != "") {
+        } else if (this.state == 1) {
             this.getBookByGenre();
         } else {
             this.getBooks();
@@ -58,21 +61,31 @@ export class BrowseBooksPageComponent implements OnInit {
 
     ngOnInit() {
         this.getBooks();
+        console.log("hehhehhehehehehhehehehehehehehehehe");
 
         this.route.params.subscribe(
             params => {
                 console.log(params);
-                this.searchWord = "";
-                this.searchForm = this.fb.group({
-                    searchWord: ['']
-                });
-
-                if (params.genre == 'all') {
-                    this.genre = "";
-                    this.getBooks();
+                if (!params.search) {
+                    this.searchForm = this.fb.group({
+                        searchWord: ['']
+                    });
                 } else {
-                    this.genre = params.genre;
-                    this.getBookByGenre();
+                    this.searchForm = this.fb.group({
+                        searchWord: [params.search]
+                    });
+                    this.search();
+                }
+
+                if (params.genre) {
+                    if (params.genre == 'all') {
+                        this.genre = "";
+                        this.getBooks();
+                    } else {
+                        console.log("set state to 1");
+                        this.genre = params.genre;
+                        this.getBookByGenre();
+                    }
                 }
                 this.page = 0;
             }, error => {
@@ -82,10 +95,14 @@ export class BrowseBooksPageComponent implements OnInit {
     }
 
     getBooks() {
+        console.log("all");
+
+        this.state = 0;
         this.bookService.getBooks(this.page).subscribe(response => {
 
                 this.books = response.content;
                 this.totalItems = response.totalElements;
+            console.log(response);
             },
             error => {
                 console.error("Getting books failed:", error);
@@ -93,19 +110,32 @@ export class BrowseBooksPageComponent implements OnInit {
     }
 
     getBookByGenre() {
-        this.bookService.getBooksByGenre(this.page, this.genre).subscribe(response => {
-                this.books = response.content;
-                this.totalItems = response.totalElements;
-            },
-            error => {
-                console.error("Getting books failed:", error);
-            });
+        console.log("gen " + this.page + " " + this.genre);
+
+        if (this.genre && this.genre != "") {
+            console.log("genre search");
+            this.state = 1;
+            this.bookService.getBooksByGenre(this.page, this.genre).subscribe(response => {
+                    this.books = response.content;
+                    this.totalItems = response.totalElements;
+                    console.log(response);
+
+                },
+                error => {
+                    console.error("Getting books failed:", error);
+                });
+        }
     }
 
     getBooksBySearch() {
-        this.bookService.searchBooks(this.page, this.searchWord).subscribe(response => {
+        console.log("sear");
+        console.log(this.page);
+        this.state = 2;
+        this.bookService.searchBooks(this.page, this.searchForm.value.searchWord).subscribe(response => {
                 this.books = response.content;
                 this.totalItems = response.totalElements;
+                console.log(response);
+
             },
             error => {
                 console.error("Getting books failed:", error);
