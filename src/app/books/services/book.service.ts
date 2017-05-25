@@ -27,7 +27,7 @@ export class BookService {
     }
 
     searchBooks(page: number, searchWord: string) {
-        let url: string = GLOBALS.API.ROOT + "/books/search/" + searchWord + "/" + page;
+        let url: string = GLOBALS.API.ROOT + "/books?search=" + searchWord + "&page=" + page;
         return this.http.get(url)
             .map(response => {
                 return response.json();
