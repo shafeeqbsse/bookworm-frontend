@@ -1,19 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {AuthService} from "../services/auth.service";
 import {LoggerService} from "../../shared/logger/logger.service";
 import {RegisterDetails} from "../../models/RegisterDetails";
+import {LoginCredentials} from "../../models/LoginCredentials";
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-register-form',
-  templateUrl: './register-form.component.html',
-  styleUrls: ['./register-form.component.css']
+    selector: 'app-register-form',
+    templateUrl: './register-form.component.html',
+    styleUrls: ['./register-form.component.css']
 })
 export class RegisterFormComponent implements OnInit {
 
     registerForm: FormGroup;
 
-    constructor(private logger: LoggerService, public fb: FormBuilder, private auth: AuthService) {
+    constructor(private logger: LoggerService, public fb: FormBuilder, private auth: AuthService,
+                private router: Router) {
     }
 
 
@@ -31,7 +34,18 @@ export class RegisterFormComponent implements OnInit {
             user.password = formData.password;
 
             this.auth.register(user).subscribe(result => {
-                    this.logger.msg(result, 1);
+                    let login = new LoginCredentials();
+                    login.username = user.username;
+                    login.password = user.password;
+                    this.auth.authenticate(login).subscribe(result => {
+                            this.router.navigate(['browse']);
+                        },
+                        error => {
+                            if (error.status && error.status == 403) {
+                                this.logger.msg("Failed to log in", 1);
+                            }
+                            this.logger.msg(error, 1);
+                        });
                 },
                 error => {
                     this.logger.msg(error, 1);
