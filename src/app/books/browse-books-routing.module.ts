@@ -3,7 +3,8 @@ import {Routes, RouterModule} from '@angular/router';
 import {BrowseBooksPageComponent} from "./browse-books-page/browse-books-page.component";
 
 const routes: Routes = [
-    {path: 'browse', component: BrowseBooksPageComponent}
+    {path: 'browse', component: BrowseBooksPageComponent},
+    {path: 'book/:bookId'}
 ];
 
 @NgModule({
