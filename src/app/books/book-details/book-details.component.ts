@@ -47,4 +47,8 @@ export class BookDetailsComponent implements OnInit {
             }
         );
     }
+
+    notify() {
+        console.log("notify");
+    }
 }
