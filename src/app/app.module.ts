@@ -15,6 +15,7 @@ import {TestModule} from "./test/test.module";
 import {ShoppingCartModule} from "./shopping-cart/shopping-cart.module";
 import {AdminModule} from "./admin/admin.module";
 import {AdminGuard} from "./auth/guards/AdminGuard";
+import {PurchasesModule} from "./purchases/purchases.module";
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -38,6 +39,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         TestModule,
         BrowseBooksModule,
         AdminModule,
+        PurchasesModule,
         AppRoutingModule
     ],
     providers: [

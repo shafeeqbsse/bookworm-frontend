@@ -13,6 +13,9 @@
         <li [hidden]="!authService.isAdmin()" [ngClass]="{'nav-item': true, 'active': url == '/admin'}">
             <a class="nav-link" routerLink="/admin">Admin</a>
         </li>
+        <li [hidden]="!authService.isAdmin()" [ngClass]="{'nav-item': true, 'active': url == '/purchases'}">
+            <a class="nav-link" routerLink="/purchases">Purchases</a>
+        </li>
     </ul>
     <ul class="nav navbar-nav ml-auto">
         <li class="nav-item mb-auto mt-auto">

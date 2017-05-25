@@ -1,0 +1,36 @@
+<div class="container">
+    <ul class="list-group">
+        <li class="list-group-item row">
+            <div class="col-6 row">
+                <div class="col-1">
+                    #
+                </div>
+                <div class="col-11">
+                    Member
+                </div>
+            </div>
+            <div class="col-6 row">
+                <div class="col-3">Book #</div>
+                <div class="col-8">Title</div>
+                <div class="col-1">Amount</div>
+            </div>
+        </li>
+        <li *ngFor="let item of purchases" class="list-group-item row">
+            <div class="col-6 row">
+                <div class="col-1">
+                    {{item.purchaseId}}
+                </div>
+                <div class="col-11">
+                    {{item.member.username}} -
+                    {{item.member.email}} -
+                    ID: {{item.member.memberId}}
+                </div>
+            </div>
+            <div class="col-6 row">
+                <div class="col-3">{{item.book.bookId}}</div>
+                <div class="col-8">{{item.book.title}}</div>
+                <div class="col-1">{{item.amount}}</div>
+            </div>
+        </li>
+    </ul>
+</div>
