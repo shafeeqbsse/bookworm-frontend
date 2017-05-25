@@ -44,6 +44,7 @@ export class BrowseBooksPageComponent implements OnInit {
             this.searchWord = "";
             this.getBooks();
         }
+        this.page = 0;
     }
 
     onPager(event: any) {
