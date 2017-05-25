@@ -25,7 +25,14 @@ export class BrowseBooksPageComponent implements OnInit {
     }
 
     onSubmit(values) {
-
+        if (values.searchWord && values.searchWord != "") {
+            this.bookService.searchBooks(values.searchWord).subscribe(response => {
+                    this.books = response;
+                },
+                error => {
+                    console.error("Getting books failed:", error);
+                });
+        }
     }
 
     ngOnInit() {
