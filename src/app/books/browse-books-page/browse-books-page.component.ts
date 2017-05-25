@@ -1,8 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {BookService} from "../services/book.service";
 import {Book} from "../../models/Book";
-import {Publisher} from "../../models/Publisher";
-import {Author} from "../../models/Author";
 import {ActivatedRoute} from "@angular/router";
 import {FormGroup, FormBuilder} from "@angular/forms";
 import {ShoppingCartService} from "../../shared/services/shopping-cart.service";
@@ -72,13 +70,12 @@ export class BrowseBooksPageComponent implements OnInit {
                     this.getBookByGenre();
                 }
                 this.page = 0;
-
             }, error => {
                 console.error("Route param error", error);
             }
         )
     }
-
+  
     getBooks() {
         this.bookService.getBooks(this.page).subscribe(response => {
 

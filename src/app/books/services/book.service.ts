@@ -2,12 +2,12 @@ import {Injectable} from "@angular/core";
 import {AuthHttp} from "angular2-jwt";
 import {GLOBALS} from "../../globals";
 import {Book} from "../../models/Book";
-import {Headers} from "@angular/http";
+import {Headers, Http} from "@angular/http";
 
 @Injectable()
 export class BookService {
 
-    constructor(private http: AuthHttp) {
+    constructor(private authHttp: AuthHttp, private http: Http) {
     }
 
     getBooks(page: number) {
@@ -46,7 +46,7 @@ export class BookService {
         const url: string = GLOBALS.API.ROOT + "/books/";
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.post(url, book)
+        return this.authHttp.post(url, book)
             .map(response => {
                 return response.json();
             });
@@ -57,7 +57,7 @@ export class BookService {
         const url: string = GLOBALS.API.ROOT + "/books/" + id + "/buy";
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.put(url, amount, {'headers': headers})
+        return this.authHttp.put(url, amount, {'headers': headers})
             .map(response => {
                 return response.json();
             });
@@ -65,7 +65,7 @@ export class BookService {
 
     deleteBook(id: number) {
         const url: string = GLOBALS.API.ROOT + "/books/" + id;
-        return this.http.delete(url)
+        return this.authHttp.delete(url)
             .map(response => {
                 return response.json();
             });

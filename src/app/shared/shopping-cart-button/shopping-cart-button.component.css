@@ -13,5 +13,10 @@
 }
 
 .shopping_cart_icon {
+    color: white;
+}
 
+#shopping_cart_button {
+    display: inline-block;
+    margin: 0 1em;
 }

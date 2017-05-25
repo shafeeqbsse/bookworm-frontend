@@ -1,26 +1,43 @@
-<h2>Register</h2>
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+<div class="container">
+    <h2>Register</h2>
 
-    <label for="inputEmail">Email</label>
-    <input formControlName="email" type="email" id="inputEmail" placeholder="john.doe@mail.com">
-    <div *ngIf="registerForm.controls['email'].hasError('required')
+    <form class="form-horizontal" [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+        <div class="form-group">
+            <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+                <input formControlName="email" class="form-control" type="email" id="inputEmail" placeholder="john.doe@mail.com">
+                <div *ngIf="registerForm.controls['email'].hasError('required')
         && registerForm.controls['email'].touched ">Please enter your email address.</div>
-    <br/>
-    <label for="inputUsername">Username</label>
-    <input formControlName="username" type="text" id="inputUsername" placeholder="username">
-    <div *ngIf="registerForm.controls['username'].hasError('required')
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputUsername" class="col-sm-2 control-label">Username</label>
+            <div class="col-sm-10">
+                <input formControlName="username" class="form-control" type="text" id="inputUsername" placeholder="username">
+                <div *ngIf="registerForm.controls['username'].hasError('required')
         && registerForm.controls['username'].touched ">Please enter a username.</div>
-    <br/>
-    <label for="inputPassword">Password</label>
-    <input formControlName="password" type="password" id="inputPassword" placeholder="password">
-    <div *ngIf="registerForm.controls['password'].hasError('required')
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+                <input formControlName="password" class="form-control" type="password" id="inputPassword" placeholder="password">
+                <div *ngIf="registerForm.controls['password'].hasError('required')
         && registerForm.controls['password'].touched ">Please enter a password.</div>
-    <br/>
-    <label for="inputRepeatPassword">Repeat Password</label>
-    <input formControlName="repeatPassword" type="password" id="inputRepeatPassword" placeholder="password">
-    <div *ngIf="registerForm.controls['repeatPassword'].hasError('required')
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputRepeatPassword" class="col-sm-2 control-label">Repeat Password</label>
+            <div class="col-sm-10">
+                <input formControlName="repeatPassword" class="form-control" type="password" id="inputRepeatPassword" placeholder="password">
+                <div *ngIf="registerForm.controls['repeatPassword'].hasError('required')
         && registerForm.controls['repeatPassword'].touched ">Please repeat the password!</div>
-    <br/>
-    <br/>
-    <input type="submit" value="Sign up" [disabled]="!registerForm.valid"/>
-</form>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="Sign in" class="btn btn-default" [disabled]="!registerForm.valid" />
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {AuthService} from "../../auth/services/auth.service";
-import {Router} from "@angular/router";
+import {Router, NavigationEnd} from "@angular/router";
 import {AppRoutingModule} from "../../app-routing.module";
-import { GLOBALS } from '../../globals';
 
 @Component({
     selector: 'app-header',
@@ -11,27 +10,23 @@ import { GLOBALS } from '../../globals';
 })
 export class HeaderComponent implements OnInit {
 
-    isCollapsed: boolean = true;
-    member: number;
+    url: string;
 
     constructor(public authService: AuthService, private router: Router,
     private routes: AppRoutingModule) {
     }
 
     ngOnInit() {
-        // this.member = GLOBALS.USER.ROLES.MEMBER;
+        this.router.events.subscribe(e => {
+            if (e instanceof NavigationEnd) {
+                this.url = e.urlAfterRedirects;
+            }
+        })
+
     }
 
     logout() {
         // this.authService.logout();
         this.router.navigate(['/login']);
-    }
-
-    checkUserRole() {
-        // if (this.authService.user.role != GLOBALS.USER.ROLES.MEMBER) {
-        //     return true;
-        // }
-        //
-        // return false;
     }
 }

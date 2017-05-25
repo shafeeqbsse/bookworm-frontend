@@ -14,6 +14,7 @@ import {BrowseBooksModule} from "./books/browse-books.module";
 import {TestModule} from "./test/test.module";
 import {ShoppingCartModule} from "./shopping-cart/shopping-cart.module";
 import {AdminModule} from "./admin/admin.module";
+import {AdminGuard} from "./auth/guards/AdminGuard";
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -46,6 +47,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
             useFactory: authHttpServiceFactory,
             deps: [Http, RequestOptions]
         },
+        AdminGuard
     ],
     bootstrap: [AppComponent]
 })

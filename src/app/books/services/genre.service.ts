@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
+import {Injectable} from "@angular/core";
 import {GLOBALS} from "../../globals";
-import {AuthHttp} from "angular2-jwt";
+import {Http} from "@angular/http";
 
 @Injectable()
 export class GenreService {
 
-    constructor(private http:AuthHttp) {
+    constructor(private http: Http) {
     }
 
 
