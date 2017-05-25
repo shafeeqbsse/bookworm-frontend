@@ -5,10 +5,18 @@
     <p>
         Find the test in the console as debug or error entries.
     </p>
+
+    <br/>
+    <star-rating-comp style="display: inline-block" [readOnly]="true" [size]="'large'"
+                      [showHalfStars]="true" [starType]="'svg'" [rating]="1.63"></star-rating-comp>
+    <span>1.6</span>
+
     <br/>
     <button (click)="addToCart()">Add to cart</button>
     <button (click)="decreaseAmount()">Remove one from amount</button>
     <button (click)="showCartContents()">Print cart contents</button>
     <button (click)="clearCart()">Clear cart contents</button>
     <button (click)="removeFromCart()">Remove book from cart</button>
+
+
 </div>
