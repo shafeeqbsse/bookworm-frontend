@@ -1,16 +1,16 @@
 <nav class="navbar navbar-toggleable-xl navbar-inverse bg-inverse">
     <h1 class="navbar-brand mb-0" routerLink="/">BookWorms</h1>
     <ul class="nav navbar-nav">
-        <li class="nav-item active">
+        <li [ngClass]="{'nav-item': true, 'active': url == '/browse'}">
             <a class="nav-link" routerLink="/browse">Browse</a>
         </li>
-        <li class="nav-item">
+        <li [ngClass]="{'nav-item': true, 'active': url == '/register'}">
             <a class="nav-link" routerLink="/register">Register</a>
         </li>
-        <li class="nav-item">
+        <li [hidden]="!authService.user.admin" [ngClass]="{'nav-item': true, 'active': url == '/test'}">
             <a class="nav-link" routerLink="/test">Test</a>
         </li>
-        <li class="nav-item">
+        <li [hidden]="!authService.user.admin" [ngClass]="{'nav-item': true, 'active': url == '/admin'}">
             <a class="nav-link" routerLink="/admin">Admin</a>
         </li>
     </ul>
