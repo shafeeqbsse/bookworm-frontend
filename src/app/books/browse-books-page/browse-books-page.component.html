@@ -4,7 +4,7 @@
         <div class="col-sm-10">
             <form [formGroup]="searchForm">
                 <input class="text-input" formControlName="searchWord" type="text" id="searchWord" placeholder="">
-                <input class="submit-input" type="submit" value="Search" [routerLink]="['/browse', {'search': searchForm.value.searchWord}]"/>
+                <input class="submit-input btn" type="submit" value="Search" [routerLink]="['/browse', {'search': searchForm.value.searchWord}]"/>
             </form>
             <br>
             <ul class="list-group">
@@ -22,9 +22,9 @@
                                 <span *ngFor="let author of book.authors">{{author.firstName}} {{author.lastName}}<br></span>
                             </div>
                         </div>
-                        <p><strong>Price:</strong> {{book.price}}</p>
-                        <button [routerLink]="['/book', book.bookId]">Details</button>
-                        <button (click)="addToCart(book)">Add to cart</button>
+                        <p><strong>Price:</strong> {{book.price}}€</p>
+                        <button class="btn" [routerLink]="['/book', book.bookId]">Details</button>
+                        <button class="btn" (click)="addToCart(book)">Add to cart</button>
                     </div>
                 </li>
                 <li class="list-group-item" *ngIf="books.length == 0">No books found</li>
