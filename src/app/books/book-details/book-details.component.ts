@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Book} from "../../models/Book";
 import {BookService} from "../services/book.service";
+import {ShoppingCartService} from "../../shared/services/shopping-cart.service";
 
 @Component({
   selector: 'app-book-details',
@@ -12,7 +13,7 @@ export class BookDetailsComponent implements OnInit {
 
     book: Book;
 
-    constructor(private route: ActivatedRoute, private bookService: BookService) { }
+    constructor(private route: ActivatedRoute, private bookService: BookService, private cartService: ShoppingCartService) { }
 
     ngOnInit() {
         this.route.params.subscribe(
@@ -27,6 +28,10 @@ export class BookDetailsComponent implements OnInit {
                 console.error("Route param error", error);
             }
         )
+    }
+
+    addToCart() {
+        this.cartService.addToCart(this.book);
     }
 
 }
