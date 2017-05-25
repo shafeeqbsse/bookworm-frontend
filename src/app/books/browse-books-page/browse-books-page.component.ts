@@ -19,11 +19,13 @@ export class BrowseBooksPageComponent implements OnInit {
     page: number;
     private genre: string;
     searchWord: string;
-    pages: number;
+    totalItems: number;
 
     constructor(private fb: FormBuilder, private cartService: ShoppingCartService, private bookService: BookService, private route: ActivatedRoute) {
         this.books = [];
         this.page = 1;
+        this.genre = "";
+        this.searchWord = "";
         this.searchForm = this.fb.group({
             searchWord: ['']
         });
@@ -44,9 +46,8 @@ export class BrowseBooksPageComponent implements OnInit {
         }
     }
 
-    movePage(pageAmount) {
-        this.page += pageAmount;
-
+    onPager(event: any) {
+        this.page = event;
         if (this.searchWord != "") {
             this.getBooksBySearch();
         } else if (this.genre != "") {
@@ -68,8 +69,9 @@ export class BrowseBooksPageComponent implements OnInit {
                 } else {
                     this.genre = params.genre;
                     this.getBookByGenre();
-
                 }
+                this.page = 0;
+
             }, error => {
                 console.error("Route param error", error);
             }
@@ -78,8 +80,9 @@ export class BrowseBooksPageComponent implements OnInit {
 
     getBooks() {
         this.bookService.getBooks(this.page).subscribe(response => {
+
                 this.books = response.content;
-                this.pages = response.totalPages;
+                this.totalItems = response.totalElements;
             },
             error => {
                 console.error("Getting books failed:", error);
@@ -89,7 +92,7 @@ export class BrowseBooksPageComponent implements OnInit {
     getBookByGenre() {
         this.bookService.getBooksByGenre(this.page, this.genre).subscribe(response => {
                 this.books = response.content;
-                this.pages = response.totalPages;
+                this.totalItems = response.totalElements;
             },
             error => {
                 console.error("Getting books failed:", error);
@@ -99,7 +102,7 @@ export class BrowseBooksPageComponent implements OnInit {
     getBooksBySearch() {
         this.bookService.searchBooks(this.page, this.searchWord).subscribe(response => {
                 this.books = response.content;
-                this.pages = response.totalPages;
+                this.totalItems = response.totalElements;
             },
             error => {
                 console.error("Getting books failed:", error);

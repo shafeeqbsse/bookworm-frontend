@@ -7,6 +7,8 @@ import {GenreService} from "./services/genre.service";
 import { GenreListComponent } from './genre-list/genre-list.component';
 import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 import {SharedModule} from "../shared/shared.module";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+
 
 @NgModule({
     imports: [
@@ -14,7 +16,8 @@ import {SharedModule} from "../shared/shared.module";
         BrowseBooksRoutingModule,
         ReactiveFormsModule,
         FormsModule,
-        SharedModule
+        SharedModule,
+        NgbModule
     ],
     declarations: [BrowseBooksPageComponent, GenreListComponent],
     providers: [BookService, GenreService]

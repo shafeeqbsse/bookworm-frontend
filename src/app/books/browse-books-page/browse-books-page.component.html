@@ -18,7 +18,6 @@
             </li>
             <li class="list-group-item" *ngIf="books.length == 0">No books found</li>
         </ul>
-        <button *ngIf="page > 1" class="btn" (click)="movePage(-1)">back</button>
-        <button *ngIf="page < pages" class="btn" (click)="movePage(1)">Forward</button>
+        <ngb-pagination (pageChange)="onPager($event)" [collectionSize]="totalItems" pageSize="3" [page]="page" [maxSize]="5" [boundaryLinks]="true"></ngb-pagination>
     </div>
 </div>
