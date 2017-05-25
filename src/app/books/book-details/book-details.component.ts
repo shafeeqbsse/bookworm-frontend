@@ -47,4 +47,13 @@ export class BookDetailsComponent implements OnInit {
             }
         );
     }
+
+    notify() {
+        this.bookService.addNotificationForRestock(this.book.bookId).subscribe(response => {
+                console.log("Subscribed!");
+            },
+            error => {
+                console.error("Subscribe failed:", error);
+            });
+    }
 }
