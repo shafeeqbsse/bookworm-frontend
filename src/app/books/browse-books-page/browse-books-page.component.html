@@ -8,7 +8,7 @@
         <br>
         <ul class="list-group">
             <li *ngFor="let book of books" class="list-group-item">
-                <p>Title: {{book.title}}</p>
+                <p [routerLink]="['/book', book.bookId]">Title: {{book.title}}</p>
                 <p>Genre: {{book.genre}}</p>
                 <p>Format: {{book.format}}</p>
                 <p>In stock: {{book.stock}}</p>
