@@ -11,7 +11,7 @@ export class BookService {
     }
 
     getBooks(page: number) {
-        let url: string = GLOBALS.API.ROOT + "/books";
+        let url: string = GLOBALS.API.ROOT + "/books?page=" + page;
         return this.http.get(url)
             .map(response => {
                 return response.json();
