@@ -8,6 +8,7 @@ import { GenreListComponent } from './genre-list/genre-list.component';
 import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 import {SharedModule} from "../shared/shared.module";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import { BookDetailsComponent } from './book-details/book-details.component';
 
 @NgModule({
     imports: [
@@ -18,7 +19,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
         SharedModule,
         NgbModule
     ],
-    declarations: [BrowseBooksPageComponent, GenreListComponent],
+    declarations: [BrowseBooksPageComponent, GenreListComponent, BookDetailsComponent],
     providers: [BookService, GenreService]
 })
 export class BrowseBooksModule {

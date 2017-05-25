@@ -61,7 +61,12 @@ export class BrowseBooksPageComponent implements OnInit {
 
         this.route.params.subscribe(
             params => {
+                console.log(params);
                 this.searchWord = "";
+                this.searchForm = this.fb.group({
+                    searchWord: ['']
+                });
+
                 if (params.genre == 'all') {
                     this.genre = "";
                     this.getBooks();
@@ -75,7 +80,7 @@ export class BrowseBooksPageComponent implements OnInit {
             }
         )
     }
-  
+
     getBooks() {
         this.bookService.getBooks(this.page).subscribe(response => {
 

@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="card" *ngIf="book != undefined">
+        <p class="text-center">{{book.title}}</p>
+        <p>{{book.description}}</p>
+        <div class="row">
+            <div class="col-sm-6">
+                <p>Authors:</p>
+                <p>Some random guy</p>
+                <p>Publisher:</p>
+                <p>OOP</p>
+            </div>
+            <div class="col-sm-6">
+                <p>Genre:</p>
+                <p>{{book.genre}}</p>
+                <p>Format:</p>
+                <p>{{book.format}}</p>
+                <p>Pages:</p>
+                <p>{{book.pages}}</p>
+                <p>ISBN:</p>
+                <p>{{book.isbn}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <p>Stock: {{book.stock}}</p>
+            </div>
+            <div class="col-sm-4">
+                <p>Price: {{book.price}}</p>
+            </div>
+            <div class="col-sm-4">
+                <button class="btn" (click)="addToCart()">Add to cart</button>
+            </div>
+        </div>
+    </div>
+</div>
