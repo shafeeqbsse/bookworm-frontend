@@ -35,21 +35,16 @@ export class BrowseBooksPageComponent implements OnInit {
 
     search() {
         this.genre = "";
-        console.log("hello2");
         if (this.searchForm.value.searchWord && this.searchForm.value.searchWord != "") {
-            console.log("jell");
             this.getBooksBySearch();
         } else {
-            console.log("haf");
             this.getBooks();
         }
         this.page = 0;
     }
 
     onPager(event: any) {
-        console.log("hellofor" + this.state);
         this.page = event;
-        console.log(this.page);
         if (this.state == 2) {
             this.getBooksBySearch();
         } else if (this.state == 1) {
@@ -61,11 +56,9 @@ export class BrowseBooksPageComponent implements OnInit {
 
     ngOnInit() {
         this.getBooks();
-        console.log("hehhehhehehehehhehehehehehehehehehe");
 
         this.route.params.subscribe(
             params => {
-                console.log(params);
                 if (!params.search) {
                     this.searchForm = this.fb.group({
                         searchWord: ['']
@@ -82,7 +75,6 @@ export class BrowseBooksPageComponent implements OnInit {
                         this.genre = "";
                         this.getBooks();
                     } else {
-                        console.log("set state to 1");
                         this.genre = params.genre;
                         this.getBookByGenre();
                     }
@@ -95,14 +87,10 @@ export class BrowseBooksPageComponent implements OnInit {
     }
 
     getBooks() {
-        console.log("all");
-
         this.state = 0;
         this.bookService.getBooks(this.page).subscribe(response => {
-
                 this.books = response.content;
                 this.totalItems = response.totalElements;
-            console.log(response);
             },
             error => {
                 console.error("Getting books failed:", error);
@@ -110,16 +98,12 @@ export class BrowseBooksPageComponent implements OnInit {
     }
 
     getBookByGenre() {
-        console.log("gen " + this.page + " " + this.genre);
 
         if (this.genre && this.genre != "") {
-            console.log("genre search");
             this.state = 1;
             this.bookService.getBooksByGenre(this.page, this.genre).subscribe(response => {
                     this.books = response.content;
                     this.totalItems = response.totalElements;
-                    console.log(response);
-
                 },
                 error => {
                     console.error("Getting books failed:", error);
@@ -128,14 +112,10 @@ export class BrowseBooksPageComponent implements OnInit {
     }
 
     getBooksBySearch() {
-        console.log("sear");
-        console.log(this.page);
         this.state = 2;
         this.bookService.searchBooks(this.page, this.searchForm.value.searchWord).subscribe(response => {
                 this.books = response.content;
                 this.totalItems = response.totalElements;
-                console.log(response);
-
             },
             error => {
                 console.error("Getting books failed:", error);
