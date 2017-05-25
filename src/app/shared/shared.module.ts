@@ -9,7 +9,7 @@ import {ShoppingCartService} from "./services/shopping-cart.service";
 import {ShoppingCartButtonComponent} from "./shopping-cart-button/shopping-cart-button.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {StarDisplayComponent} from "./star-display/star-display.component";
-import {StarRatingModule} from "angular-star-rating/dist";
+import {StarRatingModule} from "angular-star-rating/src/star-rating.module";
 
 @NgModule({
     imports: [
