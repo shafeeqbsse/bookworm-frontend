@@ -20,8 +20,6 @@ export class BrowseBooksPageComponent implements OnInit {
     ngOnInit() {
         this.bookService.getBooks().subscribe(response => {
                 this.books = response;
-                console.log(response);
-                console.debug("Got Books:", response);
             },
             error => {
                 console.error("Getting books failed:", error);
@@ -55,7 +53,12 @@ export class BrowseBooksPageComponent implements OnInit {
             });*/
 
         this.route.params.subscribe(params => {
-                console.debug("Genre from route: ", params['genre']);
+            this.bookService.getBooksByGenre(params.genre).subscribe(response => {
+                    this.books = response;
+                },
+                error => {
+                    console.error("Getting books failed:", error);
+                });
 
             }, error => {
                 console.error("Route param error", error);
