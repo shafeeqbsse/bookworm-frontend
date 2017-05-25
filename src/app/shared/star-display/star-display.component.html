@@ -1,5 +1,6 @@
 <div class="container ml-0 mr-0">
     <div *ngIf="rating" class="row">
+        <span class="mr-2 mb-auto mt-auto" *ngIf="label">{{label}}</span>
         <star-rating-comp class="mt-auto mb-auto" style="display: inline-block" [readOnly]="true" [size]="'large'"
                           [showHalfStars]="true" [starType]="'svg'" [rating]="rating"></star-rating-comp>
         <span class="ml-2 mb-auto mt-auto" style="font-size: 1.5em"><strong>{{rating.toFixed(1)}}</strong></span>

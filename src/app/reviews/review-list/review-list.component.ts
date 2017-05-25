@@ -1,6 +1,5 @@
 import {Component, OnInit, Input} from "@angular/core";
 import {Review} from "../../models/Review";
-import {ReviewService} from "../services/review.service";
 
 @Component({
     selector: 'app-review-list',
@@ -9,24 +8,11 @@ import {ReviewService} from "../services/review.service";
 })
 export class ReviewListComponent implements OnInit {
 
-    @Input() bookId: number;
+    @Input() reviews: Array<Review>;
 
-    reviews: Array<Review>;
-
-    constructor(private reviewService: ReviewService) {
+    constructor() {
     }
 
     ngOnInit() {
-        this.reviewService.getReviewsForBook(this.bookId).subscribe(
-            result => {
-                console.debug("Got Reviews", result);
-                this.reviews = result.map(rev => {
-                        return {text: rev.text, stars: rev.stars};
-                    }
-                );
-            }, error => {
-                console.error("Error getting reviews for list", error);
-            }
-        );
     }
 }
