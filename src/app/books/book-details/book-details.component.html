@@ -66,7 +66,7 @@
                         </div>
                         <div *ngIf="book.stock == 0">
                             <a>out of stock</a><br>
-                            <a style="color: dodgerblue" (click)="notify()">Notify on restock?</a><br/>
+                            <a *ngIf="authService.isAuthenticated" style="color: dodgerblue" (click)="notify()">Notify on restock?</a><br/>
                             <br/>
                         </div>
                         <h5>Price: {{book.price}}€</h5>
