@@ -71,4 +71,12 @@ export class BookService {
                 return response.json();
             });
     }
+
+    addNotificationForRestock(bookId: number) {
+        const url: string = GLOBALS.API.ROOT + "/books/" + bookId + "/notifications";
+        return this.authHttp.post(url, null)
+            .map(response => {
+                return response.json();
+            });
+    }
 }
