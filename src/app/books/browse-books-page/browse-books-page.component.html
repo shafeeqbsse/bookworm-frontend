@@ -13,7 +13,7 @@
                 <p>Format: {{book.format}}</p>
                 <p>In stock: {{book.stock}}</p>
                 <p>Price: {{book.price}}</p>
-                <button class="btn">Add to cart</button>
+                <button class="btn" (click)="addToCart(book)">Add to cart</button>
             </li>
             <li class="list-group-item" *ngIf="books.length == 0">No books found</li>
         </ul>

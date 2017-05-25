@@ -5,6 +5,7 @@ import {Publisher} from "../../models/Publisher";
 import {Author} from "../../models/Author";
 import {ActivatedRoute} from "@angular/router";
 import {FormGroup, FormBuilder} from "@angular/forms";
+import {ShoppingCartService} from "../../shared/services/shopping-cart.service";
 
 @Component({
     selector: 'app-browse-books-page',
@@ -16,7 +17,7 @@ export class BrowseBooksPageComponent implements OnInit {
     public books: Array<Book>;
     searchForm: FormGroup;
 
-    constructor(private fb: FormBuilder, private bookService: BookService, private route: ActivatedRoute) {
+    constructor(private fb: FormBuilder, private cartService: ShoppingCartService, private bookService: BookService, private route: ActivatedRoute) {
         this.books = [];
 
         this.searchForm = this.fb.group({
@@ -24,9 +25,20 @@ export class BrowseBooksPageComponent implements OnInit {
         });
     }
 
+    addToCart(book: Book) {
+        this.cartService.addToCart(book);
+    }
+
     onSubmit(values) {
         if (values.searchWord && values.searchWord != "") {
             this.bookService.searchBooks(values.searchWord).subscribe(response => {
+                    this.books = response;
+                },
+                error => {
+                    console.error("Getting books failed:", error);
+                });
+        } else {
+            this.bookService.getBooks().subscribe(response => {
                     this.books = response;
                 },
                 error => {
