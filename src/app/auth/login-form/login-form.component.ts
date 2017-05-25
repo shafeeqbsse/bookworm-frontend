@@ -33,7 +33,7 @@ export class LoginFormComponent implements OnInit {
         user.password = formData.password;
         this.auth.authenticate(user).subscribe(result => {
                 this.logger.msg(result.headers.get("authorization"), 1);
-                this.router.navigate(['me']);
+                this.router.navigate(['browse']);
             },
             error => {
                 if (error.status && error.status == 403) {
