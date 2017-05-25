@@ -1,3 +1,9 @@
-<p>
-  book-details works!
-</p>
+<div class="container">
+    <div class="card" *ngIf="book != undefined">
+        <p>Title: {{book.title}}</p>
+        <p>Genre: {{book.genre}}</p>
+        <p>Format: {{book.format}}</p>
+        <p>In stock: {{book.stock}}</p>
+        <p>Price: {{book.price}}</p>
+    </div>
+</div>
