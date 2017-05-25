@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ShoppingCartEntry, ShoppingCartService} from "../../shared/services/shopping-cart.service";
 import {BookService} from "../../books/services/book.service";
+import {AuthService} from "../../auth/services/auth.service";
 
 @Component({
     selector: 'app-shopping-cart-page',
@@ -13,7 +14,8 @@ export class ShoppingCartPageComponent implements OnInit {
 
     public total: number = 10;
 
-    constructor(private shoppingCartService: ShoppingCartService, private bookService: BookService) {
+    constructor(private shoppingCartService: ShoppingCartService, private bookService: BookService,
+                public authService: AuthService) {
     }
 
     ngOnInit() {

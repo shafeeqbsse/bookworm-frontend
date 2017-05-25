@@ -37,8 +37,11 @@
             <div class="col-1"><strong>Total</strong></div>
             <div class="col-1 offset-9">{{total.toFixed(2)}} €</div>
             <div class="col-3 offset-8">
-                <button class="btn btn-block" (click)="buyAllInCart()" [disabled]="cartEmpty()">
+                <button *ngIf="authService.isAuthenticated" class="btn btn-block" (click)="buyAllInCart()" [disabled]="cartEmpty()">
                     Purchase all in cart
+                </button>
+                <button *ngIf="!authService.isAuthenticated" class="btn btn-block disabled">
+                    Please login
                 </button>
             </div>
         </li>

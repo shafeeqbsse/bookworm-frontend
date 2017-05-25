@@ -48,7 +48,8 @@
 
     <div class="form-group row">
         <div class="col-10 offset-2">
-            <input class="submit-input" type="submit" value="Save" [disabled]="!isFormValid()"/>
+            <input *ngIf="authService.isAuthenticated" class="submit-input" type="submit" value="Save" [disabled]="!isFormValid()"/>
+            <input *ngIf="!authService.isAuthenticated" class="submit-input" type="submit" value="Please login" [disabled]="true"/>
         </div>
     </div>
 </form>
