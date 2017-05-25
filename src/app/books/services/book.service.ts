@@ -18,6 +18,14 @@ export class BookService {
             });
     }
 
+    getBooksByGenre(genre: string) {
+        let url: string = GLOBALS.API.ROOT + "/books/genre/" + genre;
+        return this.http.get(url)
+            .map(response => {
+                return response.json();
+            })
+    }
+
     getBook(id: number) {
         let url: string = GLOBALS.API.ROOT + "/books/" + id;
         return this.http.get(url)
