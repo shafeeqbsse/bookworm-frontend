@@ -55,7 +55,7 @@ export class AddBookFormComponent implements OnInit {
         book.format = formData.format;
         book.genre = formData.genre;
         book.isbn = formData.isbn;
-        book.pages = formData.totalItems;
+        book.pages = formData.pages;
         book.price = formData.price;
         this.bookService.saveBook(book).subscribe(
             result => {

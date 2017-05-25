@@ -43,6 +43,7 @@ export class BookService {
     }
 
     saveBook(book: Book) {
+        console.log(book);
         const url: string = GLOBALS.API.ROOT + "/books/";
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
