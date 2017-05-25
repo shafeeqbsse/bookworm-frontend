@@ -11,6 +11,7 @@ import {AppRoutingModule} from "../../app-routing.module";
 export class HeaderComponent implements OnInit {
 
     url: string;
+    loggedIn: boolean;
 
     constructor(public authService: AuthService, private router: Router,
     private routes: AppRoutingModule) {
@@ -20,6 +21,7 @@ export class HeaderComponent implements OnInit {
         this.router.events.subscribe(e => {
             if (e instanceof NavigationEnd) {
                 this.url = e.urlAfterRedirects;
+                this.loggedIn = this.authService.isAuthenticated;
             }
         })
 
