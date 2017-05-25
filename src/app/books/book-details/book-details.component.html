@@ -68,6 +68,9 @@
                 </div>
             </div>
         </div>
+        <div *ngIf="authService.isAdmin()" class="row">
+            <button style="margin-top: 10px;" class="btn btn-danger offset-sm-9" (click)="deleteBook()">DELETE</button>
+        </div>
         <div class="row mt-5" *ngIf="book">
             <div class="col-12">
                 <app-review-tabbed-container [bookId]="book.bookId"></app-review-tabbed-container>

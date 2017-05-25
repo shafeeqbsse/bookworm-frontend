@@ -10,6 +10,7 @@ import {SharedModule} from "../shared/shared.module";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {BookDetailsComponent} from "./book-details/book-details.component";
 import {ReviewsModule} from "../reviews/reviews.module";
+import {AuthModule} from "../auth/auth.module";
 
 @NgModule({
     imports: [
@@ -19,7 +20,8 @@ import {ReviewsModule} from "../reviews/reviews.module";
         ReviewsModule,
         FormsModule,
         SharedModule,
-        NgbModule
+        NgbModule,
+        AuthModule
     ],
     declarations: [BrowseBooksPageComponent, GenreListComponent, BookDetailsComponent],
     providers: [BookService, GenreService]
