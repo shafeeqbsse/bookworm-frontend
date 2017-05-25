@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
 import {LoginCredentials} from "../../models/LoginCredentials";
 import {Http, Response} from "@angular/http";
@@ -10,7 +10,7 @@ import {RegisterDetails} from "../../models/RegisterDetails";
 @Injectable()
 export class AuthService {
 
-    jwtHelper:JwtHelper = new JwtHelper();
+    jwtHelper: JwtHelper = new JwtHelper();
     user: User;
     public isAuthenticated: boolean = false;
 
@@ -20,7 +20,7 @@ export class AuthService {
 
     authenticate(user: LoginCredentials): Observable<any> {
         return this.http.post(GLOBALS.API.LOGIN, user)
-            .map((res:Response) => {
+            .map((res: Response) => {
                 const token = this.extractToken(res.headers.get("authorization"));
                 this.storeToken(token);
                 this.createUserFromToken(token);
@@ -30,9 +30,9 @@ export class AuthService {
             .catch(this.handleError);
     }
 
-    register(user: RegisterDetails): Observable<any>  {
+    register(user: RegisterDetails): Observable<any> {
         return this.http.post(GLOBALS.API.REGISTER, user)
-            .map((res:Response) => {
+            .map((res: Response) => {
                 return res;
             })
             .catch(this.handleError);
@@ -54,7 +54,7 @@ export class AuthService {
         return Observable.throw(error);
     }
 
-    private storeToken(token:string) {
+    private storeToken(token: string) {
         window.localStorage.setItem(GLOBALS.LOCAL_TOKEN_KEY, token);
     }
 
@@ -76,6 +76,10 @@ export class AuthService {
                 this.isAuthenticated = true;
             }
         }
+    }
+
+    public isAdmin(): boolean {
+        return (this.user && this.user.admin);
     }
 
 

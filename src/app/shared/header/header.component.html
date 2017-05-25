@@ -7,10 +7,10 @@
         <li [ngClass]="{'nav-item': true, 'active': url == '/register'}">
             <a class="nav-link" routerLink="/register">Register</a>
         </li>
-        <li [hidden]="!authService.user.admin" [ngClass]="{'nav-item': true, 'active': url == '/test'}">
+        <li [hidden]="!authService.isAdmin()" [ngClass]="{'nav-item': true, 'active': url == '/test'}">
             <a class="nav-link" routerLink="/test">Test</a>
         </li>
-        <li [hidden]="!authService.user.admin" [ngClass]="{'nav-item': true, 'active': url == '/admin'}">
+        <li [hidden]="!authService.isAdmin()" [ngClass]="{'nav-item': true, 'active': url == '/admin'}">
             <a class="nav-link" routerLink="/admin">Admin</a>
         </li>
     </ul>
