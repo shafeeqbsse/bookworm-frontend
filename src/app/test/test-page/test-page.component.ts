@@ -3,6 +3,8 @@ import {Book} from "../../models/Book";
 import {ShoppingCartService} from "../../shared/services/shopping-cart.service";
 import {BookService} from "../../books/services/book.service";
 import {GenreService} from "../../books/services/genre.service";
+import {Review} from "../../models/Review";
+import {ReviewService} from "../../reviews/services/review.service";
 
 @Component({
     selector: 'app-test-page',
@@ -13,8 +15,10 @@ export class TestPageComponent implements OnInit {
 
     public books: Array<Book>;
 
+    reviews: Array<Review>;
+
     constructor(private bookService: BookService, private shoppingCartService: ShoppingCartService,
-                private genreService: GenreService) {
+                private genreService: GenreService, private rs: ReviewService) {
     }
 
     ngOnInit() {
@@ -61,9 +65,21 @@ export class TestPageComponent implements OnInit {
             error => {
                 console.error("Failed getting genres:", error);
             }
+        );
+
+
+        this.rs.getReviewsForBook(1).subscribe(
+            reviews => {
+                console.debug("Got Reviews in TEST", reviews);
+                this.reviews = reviews.map(rev => {
+                        return {text: rev.text, stars: rev.stars};
+                    }
+                );
+                console.debug("Got Reviews AFTER", this.reviews);
+            }, error => {
+                console.error("Error gettig reviews", error);
+            }
         )
-
-
     }
 
     addToCart() {
