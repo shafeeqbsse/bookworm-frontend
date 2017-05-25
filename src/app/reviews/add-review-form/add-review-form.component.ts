@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, Input} from "@angular/core";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {Review} from "../../models/Review";
 import {ReviewService} from "../services/review.service";
@@ -11,6 +11,8 @@ import {ReviewService} from "../services/review.service";
 export class AddReviewFormComponent implements OnInit {
 
     reviewForm: FormGroup;
+
+    @Input() bookId: number;
 
     constructor(private reviewService: ReviewService, private fb: FormBuilder) {
     }
@@ -31,7 +33,7 @@ export class AddReviewFormComponent implements OnInit {
         review.stars = formData.stars;
         review.text = formData.text;
 
-        this.reviewService.saveReviewForBook(1, review).subscribe(
+        this.reviewService.saveReviewForBook(this.bookId, review).subscribe(
             result => {
                 console.debug("Saved revieww", result);
             },

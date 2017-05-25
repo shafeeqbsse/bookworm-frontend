@@ -11,6 +11,6 @@
     </div>
     <div class="card-block">
         <app-review-list *ngIf="isActive('review')" [bookId]="bookId"></app-review-list>
-        <app-add-review-form *ngIf="isActive('add')"></app-add-review-form>
+        <app-add-review-form *ngIf="isActive('add')" [bookId]="bookId"></app-add-review-form>
     </div>
 </div>
