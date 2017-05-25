@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
-import {LoggerService} from "../../shared/logger/logger.service";
+import {AuthService} from "../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-login-page',
@@ -7,16 +8,15 @@ import {LoggerService} from "../../shared/logger/logger.service";
     styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
+    loggedIn: boolean;
 
-    constructor(private logger: LoggerService) {
+    constructor(private authService: AuthService, private router: Router) {
     }
 
-
     ngOnInit() {
-        this.logger.msg("Hello from LoginPageComponent 1", 1);
-        this.logger.msg("Hello from LoginPageComponent 2", 2);
-        this.logger.msg("Hello from LoginPageComponent 3", 3);
-        this.logger.msg("Hello from LoginPageComponent 4", 4);
-        this.logger.msg("Hello from LoginPageComponent 5", 5);
+        this.loggedIn = this.authService.isAuthenticated;
+        if (this.loggedIn) {
+            this.router.navigate(["/browse"]);
+        }
     }
 }

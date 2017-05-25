@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input} from "@angular/core";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {LoggerService} from "../../shared/logger/logger.service";
 import {AuthService} from "../services/auth.service";
@@ -15,7 +15,7 @@ export class LoginFormComponent implements OnInit {
     loginForm: FormGroup;
 
     @Input() isMini: boolean = false;
-    public loggedIn: boolean;
+    @Input() loggedIn: boolean;
     public loginFailed: boolean;
 
     constructor(private logger: LoggerService, public fb: FormBuilder, private auth: AuthService,
@@ -24,7 +24,6 @@ export class LoginFormComponent implements OnInit {
 
     ngOnInit() {
         this.buildForm();
-        this.loggedIn = this.auth.isAuthenticated;
     }
 
     onSubmit(formData) {
@@ -34,7 +33,6 @@ export class LoginFormComponent implements OnInit {
         user.password = formData.password;
         this.auth.authenticate(user).subscribe(result => {
                 this.logger.msg(result.headers.get("authorization"), 1);
-                this.loggedIn = this.auth.isAuthenticated;
                 this.router.navigate(['me']);
             },
             error => {
@@ -50,7 +48,6 @@ export class LoginFormComponent implements OnInit {
     logout() {
         this.auth.logout();
         this.router.navigate(['login']);
-        this.loggedIn = this.auth.isAuthenticated;
     }
 
     buildForm(): void {
