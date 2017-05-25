@@ -19,7 +19,7 @@ export class BookService {
     }
 
     getBooksByGenre(page:number, genre: string) {
-        let url: string = GLOBALS.API.ROOT + "/books/genre/" + genre + "/" + page;
+        let url: string = GLOBALS.API.ROOT + "/books?genre=" + genre + "&page=" + page;
         return this.http.get(url)
             .map(response => {
                 return response.json();
