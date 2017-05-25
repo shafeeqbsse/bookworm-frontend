@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="card" *ngIf="book != undefined">
+    <div class="card" *ngIf="book">
         <p class="text-center">{{book.title}}</p>
         <p>{{book.description}}</p>
         <div class="row">
@@ -31,5 +31,11 @@
                 <button class="btn" (click)="addToCart()">Add to cart</button>
             </div>
         </div>
+        <div class="row mt-5" *ngIf="book">
+            <div class="col-12">
+                <app-review-tabbed-container [bookId]="book.bookId"></app-review-tabbed-container>
+            </div>
+        </div>
     </div>
+
 </div>

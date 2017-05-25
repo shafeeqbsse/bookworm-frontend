@@ -7,7 +7,6 @@ import {Component, OnInit, Input} from "@angular/core";
 })
 export class ReviewTabbedContainerComponent implements OnInit {
 
-
     tab: string = 'review';
 
     @Input() bookId;
