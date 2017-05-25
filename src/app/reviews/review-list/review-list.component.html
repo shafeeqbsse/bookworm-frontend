@@ -9,5 +9,8 @@
                 {{review.text}}
             </div>
         </li>
+        <li class="list-group-item" *ngIf="!reviews || reviews.length == 0">
+            <span>This book has not been reviewed yet</span>
+        </li>
     </ul>
 </div>
