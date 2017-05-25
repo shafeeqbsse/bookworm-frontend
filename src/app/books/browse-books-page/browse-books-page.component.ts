@@ -4,6 +4,7 @@ import {Book} from "../../models/Book";
 import {ActivatedRoute} from "@angular/router";
 import {FormGroup, FormBuilder} from "@angular/forms";
 import {ShoppingCartService} from "../../shared/services/shopping-cart.service";
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
     selector: 'app-browse-books-page',
@@ -89,7 +90,7 @@ export class BrowseBooksPageComponent implements OnInit {
     getBooks() {
         this.state = 0;
         this.bookService.getBooks(this.page).subscribe(response => {
-                this.books = response.content;
+                this.setBooks(response.content);
                 this.totalItems = response.totalElements;
             },
             error => {
@@ -102,7 +103,7 @@ export class BrowseBooksPageComponent implements OnInit {
         if (this.genre && this.genre != "") {
             this.state = 1;
             this.bookService.getBooksByGenre(this.page, this.genre).subscribe(response => {
-                    this.books = response.content;
+                    this.setBooks(response.content);
                     this.totalItems = response.totalElements;
                 },
                 error => {
@@ -114,11 +115,23 @@ export class BrowseBooksPageComponent implements OnInit {
     getBooksBySearch() {
         this.state = 2;
         this.bookService.searchBooks(this.page, this.searchForm.value.searchWord).subscribe(response => {
-                this.books = response.content;
+                this.setBooks(response.content);
                 this.totalItems = response.totalElements;
             },
             error => {
                 console.error("Getting books failed:", error);
             });
+    }
+
+    setBooks(books: Array<Book>) {
+        this.books = books;
+        this.books.forEach((book) => {
+
+            if (book.description.length > 250) {
+                book.shortDesc = book.description.substring(0, 247) + ".."
+            } else {
+                book.shortDesc = book.description;
+            }
+        });
     }
 }
