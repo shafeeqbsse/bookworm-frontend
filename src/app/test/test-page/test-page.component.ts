@@ -22,7 +22,7 @@ export class TestPageComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.bookService.getBooks().subscribe(response => {
+        this.bookService.getBooks(1).subscribe(response => {
                 this.books = response;
                 console.debug("Got Books:", response);
             },

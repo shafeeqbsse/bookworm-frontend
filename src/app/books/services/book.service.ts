@@ -10,12 +10,28 @@ export class BookService {
     constructor(private authHttp: AuthHttp, private http: Http) {
     }
 
-    getBooks() {
-        let url: string = GLOBALS.API.ROOT + "/books";
+    getBooks(page: number) {
+        let url: string = GLOBALS.API.ROOT + "/books?page=" + page;
         return this.http.get(url)
             .map(response => {
                 return response.json();
             });
+    }
+
+    getBooksByGenre(page:number, genre: string) {
+        let url: string = GLOBALS.API.ROOT + "/books/genre?genre=" + genre + "&page=" + page;
+        return this.http.get(url)
+            .map(response => {
+                return response.json();
+            })
+    }
+
+    searchBooks(page: number, searchWord: string) {
+        let url: string = GLOBALS.API.ROOT + "/books/search?search=" + searchWord + "&page=" + page;
+        return this.http.get(url)
+            .map(response => {
+                return response.json();
+            })
     }
 
     getBook(id: number) {

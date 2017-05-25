@@ -4,12 +4,19 @@ import {BrowseBooksPageComponent} from "./browse-books-page/browse-books-page.co
 import {BrowseBooksRoutingModule} from "./browse-books-routing.module";
 import {BookService} from "./services/book.service";
 import {GenreService} from "./services/genre.service";
-import {GenreListComponent} from "./genre-list/genre-list.component";
+import { GenreListComponent } from './genre-list/genre-list.component';
+import {ReactiveFormsModule, FormsModule} from "@angular/forms";
+import {SharedModule} from "../shared/shared.module";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
     imports: [
         CommonModule,
-        BrowseBooksRoutingModule
+        BrowseBooksRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        SharedModule,
+        NgbModule
     ],
     declarations: [BrowseBooksPageComponent, GenreListComponent],
     providers: [BookService, GenreService]
