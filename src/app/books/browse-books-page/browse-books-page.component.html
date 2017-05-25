@@ -1,6 +1,11 @@
 <app-genre-list></app-genre-list>
 <ul class="list-group">
     <li *ngFor="let book of books" class="list-group-item">
-        {{book.title}}
+        <p>Title: {{book.title}}</p>
+        <p>Genre: {{book.genre}}</p>
+        <p>Format: {{book.format}}</p>
+        <p>In stock: {{book.stock}}</p>
+        <p>Price: {{book.price}}</p>
+        <button>Add to cart</button>
     </li>
 </ul>

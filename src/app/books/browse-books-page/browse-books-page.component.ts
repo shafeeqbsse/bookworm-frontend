@@ -20,6 +20,7 @@ export class BrowseBooksPageComponent implements OnInit {
     ngOnInit() {
         this.bookService.getBooks().subscribe(response => {
                 this.books = response;
+                console.log(response);
                 console.debug("Got Books:", response);
             },
             error => {
