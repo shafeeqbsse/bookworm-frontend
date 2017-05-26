@@ -1,4 +1,6 @@
-const ROOT = 'http://localhost:8080';
+const ROOT = 'http://localhost:80/api';
+// const ROOT = 'https://bookworms-booky.herokuapp.com/api';
+
 
 export const GLOBALS = {
     API: {
